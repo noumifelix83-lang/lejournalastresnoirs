@@ -20,16 +20,16 @@ export function CultureSpotlight({ articles }: { articles: Article[] }) {
   return (
     <section
       id="arts-culture-traditions"
-      className="w-full bg-paper-alt border-y border-rule py-14"
+      className="w-full bg-paper-alt border-y border-rule py-8 md:py-14"
     >
-      <div className="max-w-[1320px] mx-auto px-10">
-        <div className="flex items-end justify-between mb-8">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6 md:mb-8">
           <div>
             <div className="font-ui font-bold text-[11px] tracking-[0.12em] uppercase text-gold-deep mb-2">
               Rubrique phare
             </div>
-            <h2 className="font-display font-bold text-[32px] text-ink">Arts, Culture &amp; Traditions</h2>
-            <p className="font-body text-[15px] text-ink/70 mt-2 max-w-[560px]">
+            <h2 className="font-display font-bold text-[24px] md:text-[32px] text-ink">Arts, Culture &amp; Traditions</h2>
+            <p className="font-body text-[14px] md:text-[15px] text-ink/70 mt-2 max-w-[560px]">
               Le patrimoine vivant, les scènes artistiques et les mémoires qui façonnent le continent.
             </p>
           </div>
@@ -40,11 +40,11 @@ export function CultureSpotlight({ articles }: { articles: Article[] }) {
             Toute la rubrique <ArrowRight />
           </Link>
         </div>
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {articles.map((article) => (
             <Link key={article.slug} href={`/article/${article.slug}`} className="group">
-              <PlaceholderMedia legende={article.image?.legende} className="w-full h-[200px]" />
-              <h3 className="font-display font-semibold text-[18px] leading-[1.28] text-ink mt-3 group-hover:text-gold-deep transition-colors">
+              <PlaceholderMedia legende={article.image?.legende} className="w-full h-[130px] sm:h-[160px] md:h-[200px]" />
+              <h3 className="font-display font-semibold text-[15px] md:text-[18px] leading-[1.28] text-ink mt-2.5 md:mt-3 group-hover:text-gold-deep transition-colors">
                 {article.titre}
               </h3>
             </Link>

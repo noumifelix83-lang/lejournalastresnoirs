@@ -16,21 +16,21 @@ function ArrowRight() {
 export function SectionGrid({ rubriqueSlug, articles }: { rubriqueSlug: RubriqueSlug; articles: Article[] }) {
   const r = rubrique(rubriqueSlug);
   return (
-    <section id={rubriqueSlug} className="max-w-[1320px] mx-auto px-10 pt-14">
-      <div className="flex items-baseline justify-between mb-6 pb-3.5 border-b-2 border-ink">
-        <h2 className="font-ui font-black text-[21px] tracking-[0.03em] uppercase text-ink">{r.label}</h2>
+    <section id={rubriqueSlug} className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 pt-9 md:pt-14">
+      <div className="flex items-baseline justify-between mb-5 md:mb-6 pb-3 md:pb-3.5 border-b-2 border-ink">
+        <h2 className="font-ui font-black text-[17px] md:text-[21px] tracking-[0.03em] uppercase text-ink">{r.label}</h2>
         <Link
           href={`/rubrique/${rubriqueSlug}`}
-          className="font-ui font-bold text-[12px] tracking-[0.05em] uppercase text-ink flex items-center gap-1.5"
+          className="font-ui font-bold text-[11px] md:text-[12px] tracking-[0.05em] uppercase text-ink flex items-center gap-1.5"
         >
           Toute la rubrique <ArrowRight />
         </Link>
       </div>
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
         {articles.map((article) => (
           <Link key={article.slug} href={`/article/${article.slug}`} className="group">
-            <PlaceholderMedia legende={article.image?.legende ?? "Illustration"} className="w-full h-[180px]" />
-            <h3 className="font-display font-semibold text-[18px] leading-[1.28] text-ink mt-3 group-hover:text-gold-deep transition-colors">
+            <PlaceholderMedia legende={article.image?.legende ?? "Illustration"} className="w-full h-[170px] md:h-[180px]" />
+            <h3 className="font-display font-semibold text-[16.5px] md:text-[18px] leading-[1.28] text-ink mt-3 group-hover:text-gold-deep transition-colors">
               {article.titre}
             </h3>
             {article.extrait ? (

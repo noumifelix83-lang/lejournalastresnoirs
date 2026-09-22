@@ -8,9 +8,9 @@ export function SiteFooter() {
   const colonne2 = RUBRIQUES.slice(moitie);
 
   return (
-    <footer className="w-full bg-ink-3 pt-14 pb-8 mt-auto">
-      <div className="max-w-[1320px] mx-auto px-10 grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-10">
-        <div>
+    <footer className="w-full bg-ink-3 pt-10 md:pt-14 pb-8 mt-auto">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-x-6 gap-y-9 md:gap-10">
+        <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-2.5 mb-3.5">
             <LogoMark variant="reversed" className="w-[26px] h-[30px]" />
             <span className="font-ui font-black text-[18px] text-paper tracking-wide">ASTRES NOIRS</span>
@@ -39,7 +39,7 @@ export function SiteFooter() {
           ]}
         />
       </div>
-      <div className="max-w-[1320px] mx-auto px-10 mt-9 pt-5 border-t border-white/10 flex justify-between">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 mt-8 md:mt-9 pt-5 border-t border-white/10 flex flex-col sm:flex-row gap-1.5 sm:gap-0 justify-between">
         <span className="font-ui text-[12px] text-paper/45">© 2026 Astres Noirs — Tous droits réservés.</span>
         <span className="font-ui text-[12px] text-paper/45">lejournalastresnoirs.cm</span>
       </div>
