@@ -1,10 +1,10 @@
-import { createClient } from "@sanity/client";
+import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
-import { apiVersion, dataset, isSanityConfigured, projectId } from "./env";
+import { apiVersion, dataset, projectId } from "./env";
 
-// N'appelez `sanityClient` que derrière un `if (isSanityConfigured)` : sans
-// project ID, le client n'a nulle part où lire.
+// N'appelez `sanityClient` que derrière un `if (isSanityConfigured)` (voir
+// `env.ts`) : sans project ID, le client n'a nulle part où lire.
 export const sanityClient = createClient({
   projectId: projectId || "placeholder",
   dataset,

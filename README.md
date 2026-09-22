@@ -5,21 +5,30 @@ numérique des Éditions Astres Noirs.
 
 ## Comment c'est construit, en clair
 
-Deux projets séparés dans ce dépôt :
+Ce dépôt (`web/`) est le site que les lecteurs voient — construit avec
+[Next.js](https://nextjs.org) : rapide, avec de bonnes performances même
+sur connexion lente, ce qui compte pour une audience qui lit beaucoup depuis
+un téléphone.
 
-- **`web/` (ce dossier)** — le site que les lecteurs voient. Construit avec
-  [Next.js](https://nextjs.org) : rapide, avec de bonnes performances même
-  sur connexion lente, ce qui compte pour une audience qui lit beaucoup depuis
-  un téléphone.
-- **`studio/`** — le back-office où la rédaction écrit et publie les
-  articles, sans toucher au code. Voir [`studio/README.md`](./studio/README.md)
-  pour le mettre en place (quelques étapes, à faire une fois).
+À côté (pas dans ce dépôt), un projet **frère** :
 
-Tant que le studio n'est pas branché, le site affiche du **contenu de
+```
+lejournalastresnoirs/            ← dossier parent
+├── web/                          ← ce dépôt (le site, sur GitHub)
+└── studio-lejournalastresnoirs/  ← le back-office éditorial (Sanity)
+```
+
+`studio-lejournalastresnoirs/` est le back-office où la rédaction écrit et
+publie les articles, sans toucher au code. Voir son propre
+`README.md` pour le lancer ou le déployer. Le projet Sanity
+(`lejournalastresnoirs`, id `of59z492`) est déjà connecté à ce site — voir
+`.env.local`.
+
+Tant que le studio n'a pas de vrai contenu, le site affiche du **contenu de
 démonstration** (les articles-exemples qui ont servi à valider la maquette
 avec vous). Ils vivent dans [`src/lib/content.ts`](./src/lib/content.ts) et
-seront remplacés par le vrai contenu de la rédaction une fois le studio
-connecté — voir la dernière section de `studio/README.md`.
+seront remplacés par le vrai contenu de la rédaction une fois branchés —
+voir la fin de `studio-lejournalastresnoirs/README.md`.
 
 ## Lancer le site en local
 
@@ -43,14 +52,15 @@ web/
       rubriques.ts   → la liste des rubriques du journal (source unique)
       types.ts       → la forme des données (article, portrait, …)
       content.ts      → le contenu actuel (démo) — futur point de bascule vers le CMS
-      sanity/         → prêt pour la connexion au CMS (voir studio/README.md)
-  studio/            → le back-office éditorial (Sanity) — voir son propre README
+      sanity/         → client Sanity (next-sanity) et requêtes GROQ, prêts à brancher
+  sanity.types.ts    → types générés automatiquement à partir du schéma Sanity (TypeGen)
 ```
 
 ## Prochaines étapes
 
-1. **Brancher le CMS** : suivre `studio/README.md` pour que la rédaction
-   puisse publier elle-même.
+1. **Ajouter du vrai contenu** dans le studio, puis brancher
+   `src/lib/content.ts` dessus (détails dans
+   `studio-lejournalastresnoirs/README.md`).
 2. **Pages de rubrique et d'article** : la page d'accueil est prête ; les
    pages individuelles (`/rubrique/[slug]`, `/article/[slug]`) restent à
    construire une fois le contenu réel disponible.

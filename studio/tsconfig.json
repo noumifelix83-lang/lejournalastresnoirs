@@ -1,4 +1,0 @@
-{
-  "extends": "sanity/tsconfig",
-  "include": ["./**/*.ts", "./**/*.tsx"]
-}
