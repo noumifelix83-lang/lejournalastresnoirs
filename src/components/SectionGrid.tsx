@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PlaceholderMedia } from "./PlaceholderMedia";
+import { ArticleImage } from "./ArticleImage";
 import { rubrique, type RubriqueSlug } from "@/lib/rubriques";
 import type { Article } from "@/lib/types";
 
@@ -29,7 +29,12 @@ export function SectionGrid({ rubriqueSlug, articles }: { rubriqueSlug: Rubrique
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
         {articles.map((article) => (
           <Link key={article.slug} href={`/article/${article.slug}`} className="group">
-            <PlaceholderMedia legende={article.image?.legende ?? "Illustration"} className="w-full h-[170px] md:h-[180px]" />
+            <ArticleImage
+              image={article.image}
+              fallbackLegende="Illustration"
+              className="w-full h-[170px] md:h-[180px]"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+            />
             <h3 className="font-display font-semibold text-[16.5px] md:text-[18px] leading-[1.28] text-ink mt-3 group-hover:text-gold-deep transition-colors">
               {article.titre}
             </h3>

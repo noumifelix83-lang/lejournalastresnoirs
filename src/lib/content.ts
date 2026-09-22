@@ -20,6 +20,17 @@ import {
 // correspondant, sans rien changer ici.
 // -----------------------------------------------------------------------
 
+/** Normalise la projection GROQ d'une image en `ArticleImage`, ou `undefined` si l'article n'en a pas. */
+function mapImage(img: { legende?: string | null; url?: string | null; width?: number | null; height?: number | null } | null | undefined) {
+  if (!img?.url) return img?.legende ? { legende: img.legende } : undefined;
+  return {
+    legende: img.legende ?? undefined,
+    url: img.url,
+    width: img.width ?? undefined,
+    height: img.height ?? undefined,
+  };
+}
+
 /** "Il y a 3 heures" / "Il y a 2 jours", à partir d'une date ISO Sanity. */
 function publieIlYA(iso: string): string {
   const diffMs = Date.now() - new Date(iso).getTime();
@@ -241,7 +252,7 @@ export async function getArticleALaUne(): Promise<Article> {
         chapo: a.chapo ?? undefined,
         auteur: a.auteur ?? undefined,
         publieIl_y_a: a.publieIl_y_a ? publieIlYA(a.publieIl_y_a) : "",
-        image: a.image?.legende ? { legende: a.image.legende } : undefined,
+        image: mapImage(a.image),
         aLaUne: true,
       };
     }
@@ -258,6 +269,7 @@ export async function getArticlesSecondaires(limit = 3): Promise<Article[]> {
         rubrique: a.rubrique as RubriqueSlug,
         titre: a.titre!,
         publieIl_y_a: a.publieIl_y_a ? publieIlYA(a.publieIl_y_a) : "",
+        image: mapImage(a.image),
       }));
     }
   }
@@ -277,7 +289,7 @@ export async function getArticlesParRubrique(
         titre: a.titre!,
         extrait: a.extrait ?? undefined,
         publieIl_y_a: a.publieIl_y_a ? publieIlYA(a.publieIl_y_a) : "",
-        image: a.image?.legende ? { legende: a.image.legende } : undefined,
+        image: mapImage(a.image),
       }));
     }
   }
@@ -300,6 +312,7 @@ export async function getPortraitEnAvant(): Promise<PortraitFeature> {
         role: p.role ?? "",
         extrait: p.extrait ?? "",
         slug: p.slug,
+        image: mapImage(p.image),
       };
     }
   }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PlaceholderMedia } from "./PlaceholderMedia";
+import { ArticleImage } from "./ArticleImage";
 import type { PortraitFeature as PortraitFeatureData } from "@/lib/types";
 
 function ArrowRight() {
@@ -15,7 +15,13 @@ export function PortraitFeature({ portrait }: { portrait: PortraitFeatureData })
   return (
     <section id="portrait" className="w-full bg-ink py-10 md:py-16">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-6 md:gap-14 items-center">
-        <PlaceholderMedia dark className="w-full h-[220px] sm:h-[300px] md:h-[380px]" />
+        <ArticleImage
+          image={portrait.image}
+          fallbackLegende="Portrait"
+          dark
+          className="w-full h-[220px] sm:h-[300px] md:h-[380px]"
+          sizes="(max-width: 768px) 100vw, 40vw"
+        />
         <div>
           <div className="font-ui font-bold text-[11px] tracking-[0.12em] uppercase text-gold mb-3 md:mb-4">
             Portrait

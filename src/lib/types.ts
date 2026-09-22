@@ -5,6 +5,13 @@ import type { RubriqueSlug } from "./rubriques";
 // statiques ; le jour où le CMS (Sanity) est branché, seul ce fichier change
 // — les composants et ces types restent identiques.
 
+export interface ArticleImage {
+  legende?: string;
+  url?: string;
+  width?: number;
+  height?: number;
+}
+
 export interface Article {
   slug: string;
   rubrique: RubriqueSlug;
@@ -13,7 +20,7 @@ export interface Article {
   extrait?: string;
   auteur?: string;
   publieIl_y_a: string; // ex. "Il y a 2 heures" — remplacé par une vraie date une fois le CMS branché
-  image?: { legende: string };
+  image?: ArticleImage;
   aLaUne?: boolean;
 }
 
@@ -23,6 +30,7 @@ export interface PortraitFeature {
   role: string;
   extrait: string;
   slug: string;
+  image?: ArticleImage;
 }
 
 export interface LivreVitrine {

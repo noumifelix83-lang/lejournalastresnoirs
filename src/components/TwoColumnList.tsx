@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PlaceholderMedia } from "./PlaceholderMedia";
+import { ArticleImage } from "./ArticleImage";
 import { rubrique, type RubriqueSlug } from "@/lib/rubriques";
 import type { Article } from "@/lib/types";
 
@@ -30,7 +30,11 @@ function Column({ rubriqueSlug, articles }: { rubriqueSlug: RubriqueSlug; articl
           <div key={article.slug}>
             {i > 0 ? <div className="h-px bg-rule mb-4 md:mb-5" /> : null}
             <Link href={`/article/${article.slug}`} className="flex gap-3 md:gap-4 group">
-              <PlaceholderMedia className="w-[110px] h-[82px] md:w-[130px] md:h-[96px] shrink-0" />
+              <ArticleImage
+                image={article.image}
+                className="w-[110px] h-[82px] md:w-[130px] md:h-[96px] shrink-0"
+                sizes="130px"
+              />
               <h3 className="font-display font-semibold text-[15px] md:text-[16px] leading-[1.3] text-ink group-hover:text-gold-deep transition-colors">
                 {article.titre}
               </h3>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PlaceholderMedia } from "./PlaceholderMedia";
+import { ArticleImage } from "./ArticleImage";
 import type { Article } from "@/lib/types";
 
 function ArrowRight() {
@@ -43,7 +43,12 @@ export function CultureSpotlight({ articles }: { articles: Article[] }) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {articles.map((article) => (
             <Link key={article.slug} href={`/article/${article.slug}`} className="group">
-              <PlaceholderMedia legende={article.image?.legende} className="w-full h-[130px] sm:h-[160px] md:h-[200px]" />
+              <ArticleImage
+                image={article.image}
+                fallbackLegende="Illustration — Culture"
+                className="w-full h-[130px] sm:h-[160px] md:h-[200px]"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
               <h3 className="font-display font-semibold text-[15px] md:text-[18px] leading-[1.28] text-ink mt-2.5 md:mt-3 group-hover:text-gold-deep transition-colors">
                 {article.titre}
               </h3>

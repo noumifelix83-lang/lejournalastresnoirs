@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PlaceholderMedia } from "./PlaceholderMedia";
+import { ArticleImage } from "./ArticleImage";
 import { rubrique } from "@/lib/rubriques";
 import type { Article } from "@/lib/types";
 
@@ -10,7 +10,12 @@ export function Hero({ principal, secondaires }: { principal: Article; secondair
       className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 py-6 md:py-11 grid grid-cols-1 md:grid-cols-[1.7fr_1fr] gap-8 md:gap-11"
     >
       <Link href={`/article/${principal.slug}`} className="block group">
-        <PlaceholderMedia legende={principal.image?.legende} className="w-full h-[220px] sm:h-[300px] md:h-[440px]" />
+        <ArticleImage
+          image={principal.image}
+          fallbackLegende={`Illustration — ${rubrique(principal.rubrique).label}`}
+          className="w-full h-[220px] sm:h-[300px] md:h-[440px]"
+          sizes="(max-width: 768px) 100vw, 60vw"
+        />
         <div className="font-ui font-bold text-[11px] tracking-[0.12em] uppercase text-gold-deep mt-4 md:mt-5">
           {rubrique(principal.rubrique).label}
         </div>
@@ -31,7 +36,11 @@ export function Hero({ principal, secondaires }: { principal: Article; secondair
           <div key={article.slug}>
             {i > 0 ? <div className="h-px bg-rule mb-5 md:mb-6" /> : null}
             <Link href={`/article/${article.slug}`} className="flex gap-3 md:gap-4 group">
-              <PlaceholderMedia className="w-[110px] h-[82px] md:w-[150px] md:h-[110px] shrink-0" />
+              <ArticleImage
+                image={article.image}
+                className="w-[110px] h-[82px] md:w-[150px] md:h-[110px] shrink-0"
+                sizes="150px"
+              />
               <div>
                 <div className="font-ui font-bold text-[10.5px] md:text-[11px] tracking-[0.1em] md:tracking-[0.12em] uppercase text-gold-deep">
                   {rubrique(article.rubrique).label}
