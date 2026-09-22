@@ -1,13 +1,34 @@
 import type { Article, LivreVitrine, PortraitFeature } from "./types";
+import type { RubriqueSlug } from "./rubriques";
+import { sanityClient } from "./sanity/client";
+import { isSanityConfigured } from "./sanity/env";
+import {
+  ARTICLES_PAR_RUBRIQUE_QUERY,
+  ARTICLES_SECONDAIRES_QUERY,
+  ARTICLE_A_LA_UNE_QUERY,
+  PORTRAIT_EN_AVANT_QUERY,
+} from "./sanity/queries";
 
 // -----------------------------------------------------------------------
-// Contenu de démonstration.
+// Couche de contenu : Sanity d'abord, contenu de démonstration en repli.
 //
-// Tant qu'aucun CMS n'est branché, le site lit ces fonctions. Elles ont la
-// forme (async, retour typé) qu'auront leurs équivalentes une fois
-// connectées à Sanity — remplacer le corps de chaque fonction par une
-// requête GROQ suffira, aucun composant n'aura à changer.
+// Le projet Sanity est branché (voir sanity/env.ts), mais tant que la
+// rédaction n'a pas publié de vrais articles, chaque fonction retombe sur
+// le contenu de démonstration ci-dessous plutôt que d'afficher une page
+// vide. Publiez un article dans le Studio (avec « Mettre à la Une » coché
+// pour au moins un) et il remplacera automatiquement l'exemple
+// correspondant, sans rien changer ici.
 // -----------------------------------------------------------------------
+
+/** "Il y a 3 heures" / "Il y a 2 jours", à partir d'une date ISO Sanity. */
+function publieIlYA(iso: string): string {
+  const diffMs = Date.now() - new Date(iso).getTime();
+  const diffH = Math.round(diffMs / 3_600_000);
+  if (diffH < 1) return "À l'instant";
+  if (diffH < 24) return `Il y a ${diffH} heure${diffH > 1 ? "s" : ""}`;
+  const diffJ = Math.round(diffH / 24);
+  return `Il y a ${diffJ} jour${diffJ > 1 ? "s" : ""}`;
+}
 
 const ARTICLES: Article[] = [
   {
@@ -210,10 +231,36 @@ const A_LA_UNE_TICKER = [
 ];
 
 export async function getArticleALaUne(): Promise<Article> {
+  if (isSanityConfigured) {
+    const a = await sanityClient.fetch(ARTICLE_A_LA_UNE_QUERY);
+    if (a?.slug && a.titre) {
+      return {
+        slug: a.slug,
+        rubrique: a.rubrique as RubriqueSlug,
+        titre: a.titre,
+        chapo: a.chapo ?? undefined,
+        auteur: a.auteur ?? undefined,
+        publieIl_y_a: a.publieIl_y_a ? publieIlYA(a.publieIl_y_a) : "",
+        image: a.image?.legende ? { legende: a.image.legende } : undefined,
+        aLaUne: true,
+      };
+    }
+  }
   return ARTICLES.find((a) => a.aLaUne) ?? ARTICLES[0];
 }
 
 export async function getArticlesSecondaires(limit = 3): Promise<Article[]> {
+  if (isSanityConfigured) {
+    const rows = await sanityClient.fetch(ARTICLES_SECONDAIRES_QUERY, { limit });
+    if (rows.length > 0) {
+      return rows.map((a) => ({
+        slug: a.slug!,
+        rubrique: a.rubrique as RubriqueSlug,
+        titre: a.titre!,
+        publieIl_y_a: a.publieIl_y_a ? publieIlYA(a.publieIl_y_a) : "",
+      }));
+    }
+  }
   return ARTICLES.filter((a) => !a.aLaUne).slice(0, limit);
 }
 
@@ -221,6 +268,19 @@ export async function getArticlesParRubrique(
   rubrique: Article["rubrique"],
   limit = 3
 ): Promise<Article[]> {
+  if (isSanityConfigured) {
+    const rows = await sanityClient.fetch(ARTICLES_PAR_RUBRIQUE_QUERY, { rubrique, limit });
+    if (rows.length > 0) {
+      return rows.map((a) => ({
+        slug: a.slug!,
+        rubrique: a.rubrique as RubriqueSlug,
+        titre: a.titre!,
+        extrait: a.extrait ?? undefined,
+        publieIl_y_a: a.publieIl_y_a ? publieIlYA(a.publieIl_y_a) : "",
+        image: a.image?.legende ? { legende: a.image.legende } : undefined,
+      }));
+    }
+  }
   // L'article à la une a déjà sa place dans le hero : on ne le répète pas
   // dans le module de sa propre rubrique plus bas sur la page.
   return ARTICLES.filter((a) => a.rubrique === rubrique && !a.aLaUne).slice(0, limit);
@@ -231,6 +291,18 @@ export async function getTickerALaUne(): Promise<string[]> {
 }
 
 export async function getPortraitEnAvant(): Promise<PortraitFeature> {
+  if (isSanityConfigured) {
+    const p = await sanityClient.fetch(PORTRAIT_EN_AVANT_QUERY);
+    if (p?.slug && p.citation) {
+      return {
+        citation: p.citation,
+        nom: p.nom ?? "",
+        role: p.role ?? "",
+        extrait: p.extrait ?? "",
+        slug: p.slug,
+      };
+    }
+  }
   return PORTRAIT;
 }
 
