@@ -1,0 +1,101 @@
+import { defineField, defineType } from "sanity";
+import { RUBRIQUE_OPTIONS } from "./rubriques";
+
+export default defineType({
+  name: "article",
+  title: "Article",
+  type: "document",
+  groups: [
+    { name: "contenu", title: "Contenu", default: true },
+    { name: "portrait", title: "Portrait (si applicable)" },
+    { name: "meta", title: "Publication" },
+  ],
+  fields: [
+    defineField({
+      name: "titre",
+      title: "Titre",
+      type: "string",
+      group: "contenu",
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "slug",
+      title: "Slug (URL)",
+      type: "slug",
+      group: "contenu",
+      options: { source: "titre", maxLength: 96 },
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "rubrique",
+      title: "Rubrique",
+      type: "string",
+      group: "contenu",
+      options: { list: RUBRIQUE_OPTIONS, layout: "dropdown" },
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "chapo",
+      title: "Chapô",
+      description: "Le paragraphe d'introduction, affiché sous le grand titre en Une.",
+      type: "text",
+      rows: 3,
+      group: "contenu",
+    }),
+    defineField({
+      name: "extrait",
+      title: "Extrait court",
+      description: "Une phrase affichée dans les listes de la rubrique.",
+      type: "text",
+      rows: 2,
+      group: "contenu",
+    }),
+    defineField({
+      name: "corps",
+      title: "Corps de l'article",
+      type: "array",
+      group: "contenu",
+      of: [{ type: "block" }, { type: "image", options: { hotspot: true } }],
+    }),
+    defineField({
+      name: "imagePrincipale",
+      title: "Image principale",
+      type: "image",
+      group: "contenu",
+      options: { hotspot: true },
+      fields: [{ name: "legende", title: "Légende / crédit", type: "string" }],
+    }),
+    defineField({
+      name: "citation",
+      title: "Citation en exergue",
+      description: "Utilisée pour le format Portrait, affichée en grand sur la page d'accueil.",
+      type: "string",
+      group: "portrait",
+    }),
+    defineField({
+      name: "auteur",
+      title: "Auteur·e",
+      type: "reference",
+      to: [{ type: "auteur" }],
+      group: "meta",
+    }),
+    defineField({
+      name: "publieLe",
+      title: "Publié le",
+      type: "datetime",
+      group: "meta",
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "aLaUne",
+      title: "Mettre à la Une",
+      description: "Un seul article à la fois devrait porter cette étiquette : c'est lui qui occupe le grand emplacement du hero.",
+      type: "boolean",
+      initialValue: false,
+      group: "meta",
+    }),
+  ],
+  preview: {
+    select: { title: "titre", subtitle: "rubrique", media: "imagePrincipale" },
+  },
+});
