@@ -58,3 +58,18 @@ export const PORTRAIT_EN_AVANT_QUERY = defineQuery(`
     "image": ${IMAGE_PROJECTION}
   }
 `);
+
+export const ARTICLE_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "article" && slug.current == $slug][0] {
+    "slug": slug.current,
+    rubrique,
+    titre,
+    chapo,
+    extrait,
+    corps,
+    "auteur": auteur->nom,
+    "publieIl_y_a": publieLe,
+    "image": ${IMAGE_PROJECTION},
+    aLaUne
+  }
+`);

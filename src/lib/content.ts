@@ -6,6 +6,7 @@ import {
   ARTICLES_PAR_RUBRIQUE_QUERY,
   ARTICLES_SECONDAIRES_QUERY,
   ARTICLE_A_LA_UNE_QUERY,
+  ARTICLE_BY_SLUG_QUERY,
   PORTRAIT_EN_AVANT_QUERY,
 } from "./sanity/queries";
 
@@ -300,6 +301,27 @@ export async function getArticlesParRubrique(
 
 export async function getTickerALaUne(): Promise<string[]> {
   return A_LA_UNE_TICKER;
+}
+
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  if (isSanityConfigured) {
+    const a = await sanityClient.fetch(ARTICLE_BY_SLUG_QUERY, { slug });
+    if (a?.slug && a.titre) {
+      return {
+        slug: a.slug,
+        rubrique: a.rubrique as RubriqueSlug,
+        titre: a.titre,
+        chapo: a.chapo ?? undefined,
+        extrait: a.extrait ?? undefined,
+        corps: a.corps ?? undefined,
+        auteur: a.auteur ?? undefined,
+        publieIl_y_a: a.publieIl_y_a ? publieIlYA(a.publieIl_y_a) : "",
+        image: mapImage(a.image),
+        aLaUne: a.aLaUne ?? undefined,
+      };
+    }
+  }
+  return ARTICLES.find((a) => a.slug === slug) ?? null;
 }
 
 export async function getPortraitEnAvant(): Promise<PortraitFeature> {

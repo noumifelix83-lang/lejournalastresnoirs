@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Source_Serif_4, Archivo } from "next/font/google";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -21,10 +22,23 @@ const archivo = Archivo({
   weight: ["500", "600", "700", "900"],
 });
 
+const DESCRIPTION =
+  "Le Journal Astres Noirs : actualité, économie, société, diplomatie, arts et culture. Qui lira vivra.";
+
 export const metadata: Metadata = {
-  title: "Astres Noirs — Le Journal",
-  description:
-    "Le Journal Astres Noirs : actualité, économie, société, diplomatie, arts et culture. Qui lira vivra.",
+  metadataBase: new URL(SITE_URL),
+  title: { default: `${SITE_NAME} — Le Journal`, template: `%s — ${SITE_NAME}` },
+  description: DESCRIPTION,
+  openGraph: {
+    siteName: `${SITE_NAME} — Le Journal`,
+    locale: "fr_FR",
+    type: "website",
+    images: [{ url: "/og-default.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-default.png"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
