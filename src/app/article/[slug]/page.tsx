@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArticleImage } from "@/components/ArticleImage";
 import { ShareBar } from "@/components/ShareBar";
+import { EditionsBand } from "@/components/EditionsBand";
 import { getArticleBySlug } from "@/lib/content";
 import { rubrique } from "@/lib/rubriques";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -103,6 +104,7 @@ export default async function ArticlePage({ params }: Props) {
           <ShareBar url={url} titre={article.titre} />
         </div>
       </main>
+      <EditionsBand />
       <SiteFooter />
     </>
   );

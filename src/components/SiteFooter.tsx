@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LogoMark } from "./Logo";
+import { EditionsBand } from "./EditionsBand";
 import { RUBRIQUES } from "@/lib/rubriques";
 import { CONTACT, SITE_SLOGAN } from "@/lib/contact";
 
@@ -9,8 +10,9 @@ export function SiteFooter() {
   const colonne2 = RUBRIQUES.slice(moitie);
 
   return (
-    <footer className="w-full bg-ink-3 pt-10 md:pt-14 pb-8 mt-auto">
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-x-6 gap-y-9 md:gap-10">
+    <footer className="w-full bg-ink-3 pt-0 pb-8 mt-auto">
+      <EditionsBand compact />
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-x-6 gap-y-9 md:gap-10 pt-8 md:pt-10 mt-2 border-t border-white/10">
         <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-2.5 mb-3.5">
             <LogoMark variant="reversed" className="w-[26px] h-[30px]" />
