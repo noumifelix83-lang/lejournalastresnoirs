@@ -8,11 +8,13 @@ export type RubriqueSlug =
   | "economie"
   | "societe"
   | "diplomatie"
+  | "sport"
   | "sante"
   | "environnement"
   | "developpement-durable"
   | "education"
   | "arts-culture-traditions"
+  | "religion"
   | "litterature"
   | "portrait";
 
@@ -28,11 +30,13 @@ export const RUBRIQUES: Rubrique[] = [
   { slug: "economie", label: "Économie", cluster: "flat" },
   { slug: "societe", label: "Société", cluster: "flat" },
   { slug: "diplomatie", label: "Diplomatie", cluster: "flat" },
+  { slug: "sport", label: "Sport", cluster: "flat" },
   { slug: "sante", label: "Santé", cluster: "vivre" },
   { slug: "environnement", label: "Environnement", cluster: "vivre" },
   { slug: "developpement-durable", label: "Développement durable", cluster: "vivre" },
   { slug: "education", label: "Éducation", cluster: "vivre" },
   { slug: "arts-culture-traditions", label: "Arts, Culture & Traditions", cluster: "culture" },
+  { slug: "religion", label: "Religion", cluster: "culture" },
   { slug: "litterature", label: "Littérature", cluster: "culture" },
   { slug: "portrait", label: "Portraits", cluster: "culture" },
 ];

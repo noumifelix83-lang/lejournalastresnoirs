@@ -3,6 +3,7 @@ import { LogoMark } from "./Logo";
 import { MobileNav } from "./MobileNav";
 import { RUBRIQUES_FLAT, RUBRIQUES_VIVRE, RUBRIQUES_CULTURE } from "@/lib/rubriques";
 import { getDateEdition, getTickerALaUne } from "@/lib/content";
+import { SITE_SLOGAN } from "@/lib/contact";
 
 function ChevronDown() {
   return (
@@ -84,6 +85,9 @@ export async function SiteHeader() {
         </div>
         <div className="font-ui font-black text-[26px] sm:text-[34px] md:text-[50px] leading-none tracking-tight text-ink text-center">
           ASTRES NOIRS ACTU
+        </div>
+        <div className="font-body italic text-[11px] md:text-[13px] text-ink/55 mt-1.5 md:mt-2 text-center">
+          {SITE_SLOGAN}
         </div>
       </div>
 

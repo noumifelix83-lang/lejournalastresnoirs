@@ -10,7 +10,7 @@ export interface MembreEquipe {
 }
 
 export const PDG: MembreEquipe = {
-  nom: "Félix Njanja",
+  nom: "Félix Njandja",
   role: "Promoteur du journal Astres Noirs Actu",
   descriptifs: ["Enseignant", "Homme d'affaires", "Écrivain", "Dramaturge"],
   photo: "/equipe/felix-njanja.jpeg",

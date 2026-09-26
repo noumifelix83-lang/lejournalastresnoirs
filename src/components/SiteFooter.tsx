@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LogoMark } from "./Logo";
 import { RUBRIQUES } from "@/lib/rubriques";
+import { CONTACT, SITE_SLOGAN } from "@/lib/contact";
 
 export function SiteFooter() {
   const moitie = Math.ceil(RUBRIQUES.length / 2);
@@ -16,7 +17,7 @@ export function SiteFooter() {
             <span className="font-ui font-black text-[16px] text-paper tracking-wide">ASTRES NOIRS ACTU</span>
           </div>
           <p className="font-body text-[13.5px] text-paper/60 max-w-[280px]">
-            Astres Noirs Actu est une publication numérique des Éditions Astres Noirs. Qui lira vivra.
+            Astres Noirs Actu est une publication numérique des Éditions Astres Noirs. {SITE_SLOGAN}.
           </p>
           <div className="flex gap-4 mt-4">
             {["Facebook", "Instagram", "X"].map((s) => (
@@ -29,15 +30,25 @@ export function SiteFooter() {
 
         <FooterColumn titre="Rubriques" items={colonne1.map((r) => ({ label: r.label, href: `/rubrique/${r.slug}` }))} />
         <FooterColumn titre="" items={colonne2.map((r) => ({ label: r.label, href: `/rubrique/${r.slug}` }))} />
-        <FooterColumn
-          titre="La maison"
-          items={[
-            { label: "À propos", href: "/a-propos" },
-            { label: "La rédaction", href: "/redaction" },
-            { label: "Éditions Astres Noirs", href: "https://astresnoirs.example" },
-            { label: "Contact", href: "/contact" },
-          ]}
-        />
+        <div>
+          <div className="font-ui font-bold text-[11px] tracking-[0.12em] uppercase text-paper/40 mb-4 h-[13px]">
+            La maison
+          </div>
+          <div className="flex flex-col gap-2.5 mb-6">
+            <Link href="/a-propos" className="font-ui text-[13.5px] text-paper/72 hover:text-gold">À propos</Link>
+            <Link href="/redaction" className="font-ui text-[13.5px] text-paper/72 hover:text-gold">La rédaction</Link>
+            <Link href="/contact" className="font-ui text-[13.5px] text-paper/72 hover:text-gold">Contact</Link>
+          </div>
+          <div className="font-ui font-bold text-[11px] tracking-[0.12em] uppercase text-paper/40 mb-3">
+            Contact
+          </div>
+          <div className="font-ui text-[12.5px] text-paper/60 leading-relaxed">
+            <p>{CONTACT.siege}</p>
+            <p>{CONTACT.bp}</p>
+            <p>{CONTACT.telephones.join(" / ")}</p>
+            <a href={`mailto:${CONTACT.email}`} className="hover:text-gold">{CONTACT.email}</a>
+          </div>
+        </div>
       </div>
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 mt-8 md:mt-9 pt-5 border-t border-white/10 flex flex-col sm:flex-row gap-1.5 sm:gap-0 justify-between">
         <span className="font-ui text-[12px] text-paper/45">© 2026 Éditions Astres Noirs — Tous droits réservés.</span>
