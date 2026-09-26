@@ -21,6 +21,13 @@ import {
 // correspondant, sans rien changer ici.
 // -----------------------------------------------------------------------
 
+// Le site est généré statiquement à la construction : sans ceci, une
+// publication dans le Studio n'apparaîtrait qu'après un redéploiement.
+// Avec `revalidate`, Next.js revérifie Sanity au plus toutes les 60
+// secondes et régénère la page si le contenu a changé — pas besoin de
+// redéployer à chaque article.
+const REVALIDATE = { next: { revalidate: 60 } };
+
 /** Normalise la projection GROQ d'une image en `ArticleImage`, ou `undefined` si l'article n'en a pas. */
 function mapImage(img: { legende?: string | null; url?: string | null; width?: number | null; height?: number | null } | null | undefined) {
   if (!img?.url) return img?.legende ? { legende: img.legende } : undefined;
@@ -244,7 +251,7 @@ const A_LA_UNE_TICKER = [
 
 export async function getArticleALaUne(): Promise<Article> {
   if (isSanityConfigured) {
-    const a = await sanityClient.fetch(ARTICLE_A_LA_UNE_QUERY);
+    const a = await sanityClient.fetch(ARTICLE_A_LA_UNE_QUERY, {}, REVALIDATE);
     if (a?.slug && a.titre) {
       return {
         slug: a.slug,
@@ -263,7 +270,7 @@ export async function getArticleALaUne(): Promise<Article> {
 
 export async function getArticlesSecondaires(limit = 3): Promise<Article[]> {
   if (isSanityConfigured) {
-    const rows = await sanityClient.fetch(ARTICLES_SECONDAIRES_QUERY, { limit });
+    const rows = await sanityClient.fetch(ARTICLES_SECONDAIRES_QUERY, { limit }, REVALIDATE);
     if (rows.length > 0) {
       return rows.map((a) => ({
         slug: a.slug!,
@@ -282,7 +289,7 @@ export async function getArticlesParRubrique(
   limit = 3
 ): Promise<Article[]> {
   if (isSanityConfigured) {
-    const rows = await sanityClient.fetch(ARTICLES_PAR_RUBRIQUE_QUERY, { rubrique, limit });
+    const rows = await sanityClient.fetch(ARTICLES_PAR_RUBRIQUE_QUERY, { rubrique, limit }, REVALIDATE);
     if (rows.length > 0) {
       return rows.map((a) => ({
         slug: a.slug!,
@@ -305,7 +312,7 @@ export async function getTickerALaUne(): Promise<string[]> {
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   if (isSanityConfigured) {
-    const a = await sanityClient.fetch(ARTICLE_BY_SLUG_QUERY, { slug });
+    const a = await sanityClient.fetch(ARTICLE_BY_SLUG_QUERY, { slug }, REVALIDATE);
     if (a?.slug && a.titre) {
       return {
         slug: a.slug,
@@ -326,7 +333,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 
 export async function getPortraitEnAvant(): Promise<PortraitFeature> {
   if (isSanityConfigured) {
-    const p = await sanityClient.fetch(PORTRAIT_EN_AVANT_QUERY);
+    const p = await sanityClient.fetch(PORTRAIT_EN_AVANT_QUERY, {}, REVALIDATE);
     if (p?.slug && p.citation) {
       return {
         citation: p.citation,
