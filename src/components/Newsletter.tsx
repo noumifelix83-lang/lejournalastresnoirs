@@ -6,7 +6,7 @@ export function Newsletter() {
           Recevez l&apos;essentiel de l&apos;actualité chaque matin
         </h2>
         <p className="font-body text-[14px] md:text-[15px] text-paper/70 mb-6">
-          Une sélection quotidienne, par la rédaction d&apos;Astres Noirs. Sans spam, désabonnement en un clic.
+          Une sélection quotidienne, par la rédaction d&apos;Astres Noirs Actu. Sans spam, désabonnement en un clic.
         </p>
         <form className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-start max-w-[420px] sm:max-w-none mx-auto">
           <label htmlFor="nl-email" className="sr-only">

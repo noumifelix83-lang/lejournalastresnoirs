@@ -76,14 +76,14 @@ export async function SiteHeader() {
 
       {/* Masthead */}
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 pt-6 pb-4 md:pt-9 md:pb-6 flex flex-col items-center">
-        <Link href="/" aria-label="Astres Noirs — accueil">
+        <Link href="/" aria-label="Astres Noirs Actu — accueil">
           <LogoMark className="w-9 h-10 md:w-[54px] md:h-[61px] mb-2 md:mb-3" />
         </Link>
         <div className="font-ui font-bold text-[9px] md:text-[11px] tracking-[0.1em] md:tracking-[0.12em] uppercase text-gold-deep mb-1 md:mb-1.5">
           Le Journal
         </div>
-        <div className="font-ui font-black text-[30px] sm:text-[38px] md:text-[56px] leading-none tracking-tight text-ink">
-          ASTRES NOIRS
+        <div className="font-ui font-black text-[26px] sm:text-[34px] md:text-[50px] leading-none tracking-tight text-ink text-center">
+          ASTRES NOIRS ACTU
         </div>
       </div>
 

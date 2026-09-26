@@ -30,7 +30,7 @@ export function Wordmark({ className, variant = "ink" }: WordmarkProps) {
   const color = variant === "ink" ? "text-ink" : "text-paper";
   return (
     <span className={`font-ui font-black tracking-tight ${color} ${className ?? ""}`}>
-      ASTRES NOIRS
+      ASTRES NOIRS ACTU
     </span>
   );
 }

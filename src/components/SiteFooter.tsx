@@ -13,10 +13,10 @@ export function SiteFooter() {
         <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-2.5 mb-3.5">
             <LogoMark variant="reversed" className="w-[26px] h-[30px]" />
-            <span className="font-ui font-black text-[18px] text-paper tracking-wide">ASTRES NOIRS</span>
+            <span className="font-ui font-black text-[16px] text-paper tracking-wide">ASTRES NOIRS ACTU</span>
           </div>
           <p className="font-body text-[13.5px] text-paper/60 max-w-[280px]">
-            Le Journal Astres Noirs est une publication numérique des Éditions Astres Noirs. Qui lira vivra.
+            Astres Noirs Actu est une publication numérique des Éditions Astres Noirs. Qui lira vivra.
           </p>
           <div className="flex gap-4 mt-4">
             {["Facebook", "Instagram", "X"].map((s) => (
@@ -40,8 +40,8 @@ export function SiteFooter() {
         />
       </div>
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 mt-8 md:mt-9 pt-5 border-t border-white/10 flex flex-col sm:flex-row gap-1.5 sm:gap-0 justify-between">
-        <span className="font-ui text-[12px] text-paper/45">© 2026 Astres Noirs — Tous droits réservés.</span>
-        <span className="font-ui text-[12px] text-paper/45">lejournalastresnoirs.cm</span>
+        <span className="font-ui text-[12px] text-paper/45">© 2026 Éditions Astres Noirs — Tous droits réservés.</span>
+        <span className="font-ui text-[12px] text-paper/45">lejournalastresnoirsactu.cm</span>
       </div>
     </footer>
   );

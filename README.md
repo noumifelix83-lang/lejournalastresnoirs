@@ -1,6 +1,6 @@
-# Le Journal Astres Noirs — site
+# Astres Noirs Actu — site
 
-Le code du journal en ligne **lejournalastresnoirs.cm**, publication
+Le code du journal en ligne **lejournalastresnoirsactu.cm**, publication
 numérique des Éditions Astres Noirs.
 
 ## Comment c'est construit, en clair

@@ -23,7 +23,7 @@ const archivo = Archivo({
 });
 
 const DESCRIPTION =
-  "Le Journal Astres Noirs : actualité, économie, société, diplomatie, arts et culture. Qui lira vivra.";
+  "Astres Noirs Actu : actualité, économie, société, diplomatie, arts et culture. Qui lira vivra.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
