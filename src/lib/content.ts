@@ -4,6 +4,7 @@ import { sanityClient } from "./sanity/client";
 import { isSanityConfigured } from "./sanity/env";
 import {
   ARTICLES_PAR_RUBRIQUE_QUERY,
+  ARTICLES_RUBRIQUE_COMPLETE_QUERY,
   ARTICLES_SECONDAIRES_QUERY,
   ARTICLE_A_LA_UNE_QUERY,
   ARTICLE_BY_SLUG_QUERY,
@@ -304,6 +305,29 @@ export async function getArticlesParRubrique(
   // L'article à la une a déjà sa place dans le hero : on ne le répète pas
   // dans le module de sa propre rubrique plus bas sur la page.
   return ARTICLES.filter((a) => a.rubrique === rubrique && !a.aLaUne).slice(0, limit);
+}
+
+/** Tous les articles d'une rubrique, pour sa page dédiée (contrairement au
+ * module de la Une, on n'exclut pas l'article éventuellement à la Une). */
+export async function getArticlesRubriqueComplete(
+  rubrique: Article["rubrique"],
+  limit = 30
+): Promise<Article[]> {
+  if (isSanityConfigured) {
+    const rows = await sanityClient.fetch(ARTICLES_RUBRIQUE_COMPLETE_QUERY, { rubrique, limit }, REVALIDATE);
+    if (rows.length > 0) {
+      return rows.map((a) => ({
+        slug: a.slug!,
+        rubrique: a.rubrique as RubriqueSlug,
+        titre: a.titre!,
+        extrait: a.extrait ?? undefined,
+        chapo: a.chapo ?? undefined,
+        publieIl_y_a: a.publieIl_y_a ? publieIlYA(a.publieIl_y_a) : "",
+        image: mapImage(a.image),
+      }));
+    }
+  }
+  return ARTICLES.filter((a) => a.rubrique === rubrique).slice(0, limit);
 }
 
 export async function getTickerALaUne(): Promise<string[]> {

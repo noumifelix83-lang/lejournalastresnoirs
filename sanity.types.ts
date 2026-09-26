@@ -337,6 +337,36 @@ export type ARTICLES_PAR_RUBRIQUE_QUERY_RESULT = Array<{
 }>;
 
 // Source: ../web/src/lib/sanity/queries.ts
+// Variable: ARTICLES_RUBRIQUE_COMPLETE_QUERY
+// Query: *[_type == "article" && rubrique == $rubrique] | order(publieLe desc) [0...$limit] {    "slug": slug.current, rubrique, titre, extrait, chapo,    "publieIl_y_a": publieLe,    "image": imagePrincipale{    "legende": legende,    "url": asset->url,    "width": asset->metadata.dimensions.width,    "height": asset->metadata.dimensions.height  }  }
+export type ARTICLES_RUBRIQUE_COMPLETE_QUERY_RESULT = Array<{
+  slug: string | null;
+  rubrique:
+    | "arts-culture-traditions"
+    | "developpement-durable"
+    | "diplomatie"
+    | "economie"
+    | "education"
+    | "environnement"
+    | "litterature"
+    | "politique"
+    | "portrait"
+    | "sante"
+    | "societe"
+    | null;
+  titre: string | null;
+  extrait: string | null;
+  chapo: string | null;
+  publieIl_y_a: string | null;
+  image: {
+    legende: string | null;
+    url: string | null;
+    width: number | null;
+    height: number | null;
+  } | null;
+}>;
+
+// Source: ../web/src/lib/sanity/queries.ts
 // Variable: PORTRAIT_EN_AVANT_QUERY
 // Query: *[_type == "article" && rubrique == "portrait"] | order(publieLe desc) [0] {    citation,    "nom": auteur->nom,    "role": auteur->role,    extrait,    "slug": slug.current,    "image": imagePrincipale{    "legende": legende,    "url": asset->url,    "width": asset->metadata.dimensions.width,    "height": asset->metadata.dimensions.height  }  }
 export type PORTRAIT_EN_AVANT_QUERY_RESULT = {
@@ -353,13 +383,76 @@ export type PORTRAIT_EN_AVANT_QUERY_RESULT = {
   } | null;
 } | null;
 
+// Source: ../web/src/lib/sanity/queries.ts
+// Variable: ARTICLE_BY_SLUG_QUERY
+// Query: *[_type == "article" && slug.current == $slug][0] {    "slug": slug.current,    rubrique,    titre,    chapo,    extrait,    corps,    "auteur": auteur->nom,    "publieIl_y_a": publieLe,    "image": imagePrincipale{    "legende": legende,    "url": asset->url,    "width": asset->metadata.dimensions.width,    "height": asset->metadata.dimensions.height  },    aLaUne  }
+export type ARTICLE_BY_SLUG_QUERY_RESULT = {
+  slug: string | null;
+  rubrique:
+    | "arts-culture-traditions"
+    | "developpement-durable"
+    | "diplomatie"
+    | "economie"
+    | "education"
+    | "environnement"
+    | "litterature"
+    | "politique"
+    | "portrait"
+    | "sante"
+    | "societe"
+    | null;
+  titre: string | null;
+  chapo: string | null;
+  extrait: string | null;
+  corps: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+        _key: string;
+      }
+  > | null;
+  auteur: string | null;
+  publieIl_y_a: string | null;
+  image: {
+    legende: string | null;
+    url: string | null;
+    width: number | null;
+    height: number | null;
+  } | null;
+  aLaUne: boolean | null;
+} | null;
+
 // Query TypeMap
 declare global {
   interface SanityQueries {
     '\n  *[_type == "article" && aLaUne == true] | order(publieLe desc) [0] {\n    "slug": slug.current,\n    rubrique,\n    titre,\n    chapo,\n    "auteur": auteur->nom,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  },\n    aLaUne\n  }\n': ARTICLE_A_LA_UNE_QUERY_RESULT;
     '\n  *[_type == "article" && aLaUne != true] | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_SECONDAIRES_QUERY_RESULT;
     '\n  *[_type == "article" && rubrique == $rubrique && aLaUne != true]\n    | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, extrait,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_PAR_RUBRIQUE_QUERY_RESULT;
+    '\n  *[_type == "article" && rubrique == $rubrique] | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, extrait, chapo,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_RUBRIQUE_COMPLETE_QUERY_RESULT;
     '\n  *[_type == "article" && rubrique == "portrait"] | order(publieLe desc) [0] {\n    citation,\n    "nom": auteur->nom,\n    "role": auteur->role,\n    extrait,\n    "slug": slug.current,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': PORTRAIT_EN_AVANT_QUERY_RESULT;
+    '\n  *[_type == "article" && slug.current == $slug][0] {\n    "slug": slug.current,\n    rubrique,\n    titre,\n    chapo,\n    extrait,\n    corps,\n    "auteur": auteur->nom,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  },\n    aLaUne\n  }\n': ARTICLE_BY_SLUG_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

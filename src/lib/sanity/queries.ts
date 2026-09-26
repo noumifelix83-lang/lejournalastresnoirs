@@ -48,6 +48,17 @@ export const ARTICLES_PAR_RUBRIQUE_QUERY = defineQuery(`
   }
 `);
 
+// Pour la page de rubrique elle-même : contrairement à ARTICLES_PAR_RUBRIQUE_QUERY
+// (utilisée dans les modules de la Une), on n'exclut pas l'article à la Une —
+// sur sa propre page de rubrique, il doit apparaître comme les autres.
+export const ARTICLES_RUBRIQUE_COMPLETE_QUERY = defineQuery(`
+  *[_type == "article" && rubrique == $rubrique] | order(publieLe desc) [0...$limit] {
+    "slug": slug.current, rubrique, titre, extrait, chapo,
+    "publieIl_y_a": publieLe,
+    "image": ${IMAGE_PROJECTION}
+  }
+`);
+
 export const PORTRAIT_EN_AVANT_QUERY = defineQuery(`
   *[_type == "article" && rubrique == "portrait"] | order(publieLe desc) [0] {
     citation,
