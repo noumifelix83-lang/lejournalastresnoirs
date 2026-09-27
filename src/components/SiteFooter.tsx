@@ -52,9 +52,13 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 mt-8 md:mt-9 pt-5 border-t border-white/10 flex flex-col sm:flex-row gap-1.5 sm:gap-0 justify-between">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 mt-8 md:mt-9 pt-5 border-t border-white/10 flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between items-center sm:items-start">
         <span className="font-ui text-[12px] text-paper/45">© 2026 Éditions Astres Noirs — Tous droits réservés.</span>
-        <span className="font-ui text-[12px] text-paper/45">lejournalastresnoirsactu.cm</span>
+        <div className="flex gap-4 items-center">
+          <Link href="/confidentialite" className="font-ui text-[12px] text-paper/45 hover:text-gold">Confidentialité</Link>
+          <Link href="/conditions-utilisation" className="font-ui text-[12px] text-paper/45 hover:text-gold">Conditions d&apos;utilisation</Link>
+          <span className="font-ui text-[12px] text-paper/45">lejournalastresnoirsactu.cm</span>
+        </div>
       </div>
     </footer>
   );
