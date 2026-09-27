@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CONTACT } from "@/lib/contact";
+import { EDITIONS_SITE_WEB } from "@/lib/editions";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -41,12 +42,25 @@ export default function ContactPage() {
               ))}
             </p>
           </div>
-          <div className="sm:col-span-2">
+          <div>
             <div className="font-ui font-bold text-[11px] tracking-[0.12em] uppercase text-gold-deep mb-2">
               E-mail
             </div>
             <a href={`mailto:${CONTACT.email}`} className="font-body text-[15px] text-ink/80 hover:text-gold-deep underline">
               {CONTACT.email}
+            </a>
+          </div>
+          <div>
+            <div className="font-ui font-bold text-[11px] tracking-[0.12em] uppercase text-gold-deep mb-2">
+              Maison d&apos;édition
+            </div>
+            <a
+              href={EDITIONS_SITE_WEB}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-body text-[15px] text-ink/80 hover:text-gold-deep underline"
+            >
+              astresnoirs.com
             </a>
           </div>
         </div>

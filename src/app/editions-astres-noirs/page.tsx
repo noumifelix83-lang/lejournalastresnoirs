@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { LogoMark } from "@/components/Logo";
-import { EDITIONS_NOM, EDITIONS_SLOGAN, EDITIONS_TRAVAUX } from "@/lib/editions";
+import { EDITIONS_NOM, EDITIONS_SLOGAN, EDITIONS_TRAVAUX, EDITIONS_SITE_WEB } from "@/lib/editions";
 import { CONTACT } from "@/lib/contact";
 
 export const metadata: Metadata = {
@@ -22,6 +22,14 @@ export default function EditionsPage() {
           </div>
           <h1 className="font-display font-semibold text-[30px] sm:text-[38px] text-ink">{EDITIONS_NOM}</h1>
           <p className="font-body italic text-[15px] text-ink/60 mt-3">{EDITIONS_SLOGAN}</p>
+          <a
+            href={EDITIONS_SITE_WEB}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-4 font-ui font-bold text-[13px] tracking-[0.05em] uppercase text-gold-deep border border-gold-deep/40 rounded-full px-6 py-2.5 hover:bg-gold-deep hover:text-paper transition-colors"
+          >
+            Visiter astresnoirs.com
+          </a>
         </div>
 
         <div className="font-body text-[16px] sm:text-[17px] leading-relaxed text-ink/85 mb-10">
@@ -49,6 +57,10 @@ export default function EditionsPage() {
           <p>{CONTACT.siege} — {CONTACT.bp}</p>
           <p>{CONTACT.telephones.join(" / ")}</p>
           <a href={`mailto:${CONTACT.email}`} className="hover:text-gold-deep">{CONTACT.email}</a>
+          <br />
+          <a href={EDITIONS_SITE_WEB} target="_blank" rel="noopener noreferrer" className="hover:text-gold-deep">
+            astresnoirs.com
+          </a>
         </div>
       </main>
       <SiteFooter />

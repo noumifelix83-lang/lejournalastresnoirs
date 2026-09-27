@@ -3,6 +3,7 @@ import { LogoMark } from "./Logo";
 import { EditionsBand } from "./EditionsBand";
 import { RUBRIQUES } from "@/lib/rubriques";
 import { CONTACT, SITE_SLOGAN } from "@/lib/contact";
+import { EDITIONS_SITE_WEB } from "@/lib/editions";
 
 export function SiteFooter() {
   const moitie = Math.ceil(RUBRIQUES.length / 2);
@@ -49,6 +50,10 @@ export function SiteFooter() {
             <p>{CONTACT.bp}</p>
             <p>{CONTACT.telephones.join(" / ")}</p>
             <a href={`mailto:${CONTACT.email}`} className="hover:text-gold">{CONTACT.email}</a>
+            <br />
+            <a href={EDITIONS_SITE_WEB} target="_blank" rel="noopener noreferrer" className="hover:text-gold">
+              astresnoirs.com
+            </a>
           </div>
         </div>
       </div>

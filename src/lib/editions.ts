@@ -4,6 +4,7 @@
 
 export const EDITIONS_NOM = "Les Éditions Astres Noirs";
 export const EDITIONS_SLOGAN = "Qui lira vivra";
+export const EDITIONS_SITE_WEB = "https://astresnoirs.com";
 
 export const EDITIONS_TRAVAUX = [
   "Édition et publication d'ouvrages d'auteurs à vocation généraliste (roman, théâtre, poésie, essai, conte, nouvelle, fable) et de mémoires académiques",
