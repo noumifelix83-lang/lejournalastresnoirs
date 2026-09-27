@@ -28,7 +28,7 @@ export default function EditionsPage() {
             rel="noopener noreferrer"
             className="inline-block mt-4 font-ui font-bold text-[13px] tracking-[0.05em] uppercase text-gold-deep border border-gold-deep/40 rounded-full px-6 py-2.5 hover:bg-gold-deep hover:text-paper transition-colors"
           >
-            Visiter astresnoirs.com
+            Visiter astresnoirs.net
           </a>
         </div>
 
@@ -59,7 +59,7 @@ export default function EditionsPage() {
           <a href={`mailto:${CONTACT.email}`} className="hover:text-gold-deep">{CONTACT.email}</a>
           <br />
           <a href={EDITIONS_SITE_WEB} target="_blank" rel="noopener noreferrer" className="hover:text-gold-deep">
-            astresnoirs.com
+            astresnoirs.net
           </a>
         </div>
       </main>

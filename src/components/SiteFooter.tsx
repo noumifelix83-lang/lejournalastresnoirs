@@ -52,7 +52,7 @@ export function SiteFooter() {
             <a href={`mailto:${CONTACT.email}`} className="hover:text-gold">{CONTACT.email}</a>
             <br />
             <a href={EDITIONS_SITE_WEB} target="_blank" rel="noopener noreferrer" className="hover:text-gold">
-              astresnoirs.com
+              astresnoirs.net
             </a>
           </div>
         </div>

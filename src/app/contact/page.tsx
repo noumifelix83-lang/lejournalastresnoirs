@@ -60,7 +60,7 @@ export default function ContactPage() {
               rel="noopener noreferrer"
               className="font-body text-[15px] text-ink/80 hover:text-gold-deep underline"
             >
-              astresnoirs.com
+              astresnoirs.net
             </a>
           </div>
         </div>
