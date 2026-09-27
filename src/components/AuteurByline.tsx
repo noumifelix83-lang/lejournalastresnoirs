@@ -26,7 +26,7 @@ export function AuteurByline({ nom, role, photo }: { nom: string; role?: string;
           Écrit par
         </div>
         <div className="font-display font-semibold text-[17px] text-ink">{nom}</div>
-        {role ? <div className="font-ui text-[13px] text-ink/60">{role}</div> : null}
+        {role ? <div className="font-ui text-[13px] text-ink/60 whitespace-pre-line leading-[1.5]">{role}</div> : null}
       </div>
     </div>
   );
