@@ -29,6 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: `${SITE_NAME} — Le Journal`, template: `%s — ${SITE_NAME}` },
   description: DESCRIPTION,
+  alternates: { canonical: "/" },
   openGraph: {
     siteName: `${SITE_NAME} — Le Journal`,
     locale: "fr_FR",
