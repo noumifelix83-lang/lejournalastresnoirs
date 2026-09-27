@@ -358,6 +358,8 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
         extrait: a.extrait ?? undefined,
         corps: a.corps ?? undefined,
         auteur: a.auteur ?? undefined,
+        auteurRole: a.auteurRole ?? undefined,
+        auteurPhoto: mapImage(a.auteurPhoto),
         publieIl_y_a: a.publieIl_y_a ? publieIlYA(a.publieIl_y_a) : "",
         image: mapImage(a.image),
         aLaUne: a.aLaUne ?? undefined,

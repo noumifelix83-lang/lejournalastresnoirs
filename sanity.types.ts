@@ -407,7 +407,7 @@ export type PORTRAIT_EN_AVANT_QUERY_RESULT = {
 
 // Source: ../web/src/lib/sanity/queries.ts
 // Variable: ARTICLE_BY_SLUG_QUERY
-// Query: *[_type == "article" && slug.current == $slug][0] {    "slug": slug.current,    rubrique,    titre,    chapo,    extrait,    corps,    "auteur": auteur->nom,    "publieIl_y_a": publieLe,    "image": imagePrincipale{    "legende": legende,    "url": asset->url,    "width": asset->metadata.dimensions.width,    "height": asset->metadata.dimensions.height  },    aLaUne  }
+// Query: *[_type == "article" && slug.current == $slug][0] {    "slug": slug.current,    rubrique,    titre,    chapo,    extrait,    corps,    "auteur": auteur->nom,    "auteurRole": auteur->role,    "auteurPhoto": auteur->photo{      "url": asset->url,      "width": asset->metadata.dimensions.width,      "height": asset->metadata.dimensions.height    },    "publieIl_y_a": publieLe,    "image": imagePrincipale{    "legende": legende,    "url": asset->url,    "width": asset->metadata.dimensions.width,    "height": asset->metadata.dimensions.height  },    aLaUne  }
 export type ARTICLE_BY_SLUG_QUERY_RESULT = {
   slug: string | null;
   rubrique:
@@ -458,6 +458,12 @@ export type ARTICLE_BY_SLUG_QUERY_RESULT = {
       }
   > | null;
   auteur: string | null;
+  auteurRole: string | null;
+  auteurPhoto: {
+    url: string | null;
+    width: number | null;
+    height: number | null;
+  } | null;
   publieIl_y_a: string | null;
   image: {
     legende: string | null;
@@ -484,7 +490,7 @@ declare global {
     '\n  *[_type == "article" && rubrique == $rubrique && aLaUne != true]\n    | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, extrait,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_PAR_RUBRIQUE_QUERY_RESULT;
     '\n  *[_type == "article" && rubrique == $rubrique] | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, extrait, chapo,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_RUBRIQUE_COMPLETE_QUERY_RESULT;
     '\n  *[_type == "article" && rubrique == "portrait"] | order(publieLe desc) [0] {\n    citation,\n    "nom": auteur->nom,\n    "role": auteur->role,\n    extrait,\n    "slug": slug.current,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': PORTRAIT_EN_AVANT_QUERY_RESULT;
-    '\n  *[_type == "article" && slug.current == $slug][0] {\n    "slug": slug.current,\n    rubrique,\n    titre,\n    chapo,\n    extrait,\n    corps,\n    "auteur": auteur->nom,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  },\n    aLaUne\n  }\n': ARTICLE_BY_SLUG_QUERY_RESULT;
+    '\n  *[_type == "article" && slug.current == $slug][0] {\n    "slug": slug.current,\n    rubrique,\n    titre,\n    chapo,\n    extrait,\n    corps,\n    "auteur": auteur->nom,\n    "auteurRole": auteur->role,\n    "auteurPhoto": auteur->photo{\n      "url": asset->url,\n      "width": asset->metadata.dimensions.width,\n      "height": asset->metadata.dimensions.height\n    },\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  },\n    aLaUne\n  }\n': ARTICLE_BY_SLUG_QUERY_RESULT;
     '\n  *[_type == "article"] { "slug": slug.current, "publieLe": publieLe }\n': TOUS_LES_SLUGS_QUERY_RESULT;
   }
 }

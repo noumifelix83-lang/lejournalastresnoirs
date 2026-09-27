@@ -79,6 +79,12 @@ export const ARTICLE_BY_SLUG_QUERY = defineQuery(`
     extrait,
     corps,
     "auteur": auteur->nom,
+    "auteurRole": auteur->role,
+    "auteurPhoto": auteur->photo{
+      "url": asset->url,
+      "width": asset->metadata.dimensions.width,
+      "height": asset->metadata.dimensions.height
+    },
     "publieIl_y_a": publieLe,
     "image": ${IMAGE_PROJECTION},
     aLaUne

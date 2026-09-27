@@ -19,6 +19,8 @@ export interface Article {
   chapo?: string;
   extrait?: string;
   auteur?: string;
+  auteurRole?: string;
+  auteurPhoto?: ArticleImage;
   publieIl_y_a: string; // ex. "Il y a 2 heures" — remplacé par une vraie date une fois le CMS branché
   image?: ArticleImage;
   aLaUne?: boolean;

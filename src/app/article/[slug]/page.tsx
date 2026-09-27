@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ArticleImage } from "@/components/ArticleImage";
 import { ShareBar } from "@/components/ShareBar";
 import { EditionsBand } from "@/components/EditionsBand";
+import { AuteurByline } from "@/components/AuteurByline";
 import { getArticleBySlug } from "@/lib/content";
 import { rubrique } from "@/lib/rubriques";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -100,7 +101,13 @@ export default async function ArticlePage({ params }: Props) {
           <p className="font-body text-[16px] md:text-[17px] leading-[1.7] text-ink/85">{article.extrait}</p>
         ) : null}
 
-        <div className="mt-10 pt-6 border-t border-rule">
+        {article.auteur ? (
+          <div className="mt-10">
+            <AuteurByline nom={article.auteur} role={article.auteurRole} photo={article.auteurPhoto} />
+          </div>
+        ) : null}
+
+        <div className={`pt-6 ${article.auteur ? "" : "mt-10 border-t border-rule"}`}>
           <ShareBar url={url} titre={article.titre} />
         </div>
       </main>
