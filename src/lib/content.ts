@@ -9,6 +9,7 @@ import {
   ARTICLE_A_LA_UNE_QUERY,
   ARTICLE_BY_SLUG_QUERY,
   PORTRAIT_EN_AVANT_QUERY,
+  TOUS_LES_SLUGS_QUERY,
 } from "./sanity/queries";
 
 // -----------------------------------------------------------------------
@@ -328,6 +329,17 @@ export async function getArticlesRubriqueComplete(
     }
   }
   return ARTICLES.filter((a) => a.rubrique === rubrique).slice(0, limit);
+}
+
+/** Slugs (et date de publication) de tous les articles, pour `sitemap.xml`. */
+export async function getTousLesArticles(): Promise<{ slug: string; publieLe?: string }[]> {
+  if (isSanityConfigured) {
+    const rows = await sanityClient.fetch(TOUS_LES_SLUGS_QUERY, {}, REVALIDATE);
+    if (rows.length > 0) {
+      return rows.map((a) => ({ slug: a.slug!, publieLe: a.publieLe ?? undefined }));
+    }
+  }
+  return ARTICLES.map((a) => ({ slug: a.slug }));
 }
 
 export async function getTickerALaUne(): Promise<string[]> {

@@ -84,3 +84,9 @@ export const ARTICLE_BY_SLUG_QUERY = defineQuery(`
     aLaUne
   }
 `);
+
+// Pour le plan du site (`sitemap.xml`) : un identifiant et une date par
+// article, sans le contenu — inutile d'en charger davantage ici.
+export const TOUS_LES_SLUGS_QUERY = defineQuery(`
+  *[_type == "article"] { "slug": slug.current, "publieLe": publieLe }
+`);

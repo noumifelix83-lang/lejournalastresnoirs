@@ -15,6 +15,17 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type Abonne = {
+  _id: string;
+  _type: "abonne";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  email?: string;
+  source?: "email" | "google";
+  dateInscription?: string;
+};
+
 export type SanityImageAssetReference = {
   _ref: string;
   _type: "reference";
@@ -42,11 +53,13 @@ export type Article = {
     | "economie"
     | "societe"
     | "diplomatie"
+    | "sport"
     | "sante"
     | "environnement"
     | "developpement-durable"
     | "education"
     | "arts-culture-traditions"
+    | "religion"
     | "litterature"
     | "portrait";
   chapo?: string;
@@ -232,6 +245,7 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | Abonne
   | SanityImageAssetReference
   | AuteurReference
   | Article
@@ -263,8 +277,10 @@ export type ARTICLE_A_LA_UNE_QUERY_RESULT = {
     | "litterature"
     | "politique"
     | "portrait"
+    | "religion"
     | "sante"
     | "societe"
+    | "sport"
     | null;
   titre: string | null;
   chapo: string | null;
@@ -294,8 +310,10 @@ export type ARTICLES_SECONDAIRES_QUERY_RESULT = Array<{
     | "litterature"
     | "politique"
     | "portrait"
+    | "religion"
     | "sante"
     | "societe"
+    | "sport"
     | null;
   titre: string | null;
   publieIl_y_a: string | null;
@@ -322,8 +340,10 @@ export type ARTICLES_PAR_RUBRIQUE_QUERY_RESULT = Array<{
     | "litterature"
     | "politique"
     | "portrait"
+    | "religion"
     | "sante"
     | "societe"
+    | "sport"
     | null;
   titre: string | null;
   extrait: string | null;
@@ -351,8 +371,10 @@ export type ARTICLES_RUBRIQUE_COMPLETE_QUERY_RESULT = Array<{
     | "litterature"
     | "politique"
     | "portrait"
+    | "religion"
     | "sante"
     | "societe"
+    | "sport"
     | null;
   titre: string | null;
   extrait: string | null;
@@ -398,8 +420,10 @@ export type ARTICLE_BY_SLUG_QUERY_RESULT = {
     | "litterature"
     | "politique"
     | "portrait"
+    | "religion"
     | "sante"
     | "societe"
+    | "sport"
     | null;
   titre: string | null;
   chapo: string | null;
@@ -444,6 +468,14 @@ export type ARTICLE_BY_SLUG_QUERY_RESULT = {
   aLaUne: boolean | null;
 } | null;
 
+// Source: ../web/src/lib/sanity/queries.ts
+// Variable: TOUS_LES_SLUGS_QUERY
+// Query: *[_type == "article"] { "slug": slug.current, "publieLe": publieLe }
+export type TOUS_LES_SLUGS_QUERY_RESULT = Array<{
+  slug: string | null;
+  publieLe: string | null;
+}>;
+
 // Query TypeMap
 declare global {
   interface SanityQueries {
@@ -453,6 +485,7 @@ declare global {
     '\n  *[_type == "article" && rubrique == $rubrique] | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, extrait, chapo,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_RUBRIQUE_COMPLETE_QUERY_RESULT;
     '\n  *[_type == "article" && rubrique == "portrait"] | order(publieLe desc) [0] {\n    citation,\n    "nom": auteur->nom,\n    "role": auteur->role,\n    extrait,\n    "slug": slug.current,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': PORTRAIT_EN_AVANT_QUERY_RESULT;
     '\n  *[_type == "article" && slug.current == $slug][0] {\n    "slug": slug.current,\n    rubrique,\n    titre,\n    chapo,\n    extrait,\n    corps,\n    "auteur": auteur->nom,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  },\n    aLaUne\n  }\n': ARTICLE_BY_SLUG_QUERY_RESULT;
+    '\n  *[_type == "article"] { "slug": slug.current, "publieLe": publieLe }\n': TOUS_LES_SLUGS_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too
