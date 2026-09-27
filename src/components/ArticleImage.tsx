@@ -9,6 +9,10 @@ interface ArticleImageProps {
   className?: string;
   dark?: boolean;
   sizes?: string;
+  /** "cover" (par défaut) remplit le cadre en rognant ; "contain" montre la
+   * photo entière, avec un fond derrière — à utiliser pour la grande photo
+   * d'un article, où une image portrait ne doit pas être coupée. */
+  fit?: "cover" | "contain";
 }
 
 /**
@@ -17,16 +21,23 @@ interface ArticleImageProps {
  * fixer largeur et hauteur (ex. "w-full h-[220px]") : l'image la remplit en
  * `object-cover`, exactement comme le placeholder qu'elle remplace.
  */
-export function ArticleImage({ image, fallbackLegende, className, dark = false, sizes = "100vw" }: ArticleImageProps) {
+export function ArticleImage({
+  image,
+  fallbackLegende,
+  className,
+  dark = false,
+  sizes = "100vw",
+  fit = "cover",
+}: ArticleImageProps) {
   if (image?.url) {
     return (
-      <div className={`relative overflow-hidden ${className ?? ""}`}>
+      <div className={`relative overflow-hidden ${fit === "contain" ? "bg-ink-3" : ""} ${className ?? ""}`}>
         <Image
           src={image.url}
           alt={image.legende || fallbackLegende || ""}
           fill
           sizes={sizes}
-          className="object-cover"
+          className={fit === "contain" ? "object-contain" : "object-cover"}
         />
       </div>
     );

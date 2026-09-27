@@ -89,8 +89,9 @@ export default async function ArticlePage({ params }: Props) {
         <ArticleImage
           image={article.image}
           fallbackLegende={`Illustration — ${r.label}`}
-          className="w-full h-[220px] sm:h-[320px] md:h-[440px] mb-8"
+          className="w-full h-[280px] sm:h-[400px] md:h-[520px] mb-8"
           sizes="(max-width: 820px) 100vw, 820px"
+          fit="contain"
         />
 
         {article.corps ? (
