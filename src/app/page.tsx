@@ -22,21 +22,21 @@ export default async function Home() {
     articlePrincipal,
     articlesSecondaires,
     articlesCulture,
-    articlesPolitique,
-    articlesEconomie,
-    articlesSociete,
-    articlesDiplomatie,
+    articlesActualite,
+    articlesCinema,
+    articlesInterview,
+    articlesArtisanat,
     portrait,
     livres,
     ...articlesVivre
   ] = await Promise.all([
     getArticleALaUne(),
     getArticlesSecondaires(3),
-    getArticlesParRubrique("arts-culture-traditions", 4),
-    getArticlesParRubrique("politique", 3),
-    getArticlesParRubrique("economie", 3),
-    getArticlesParRubrique("societe", 3),
-    getArticlesParRubrique("diplomatie", 3),
+    getArticlesParRubrique("traditions-ancestrales", 4),
+    getArticlesParRubrique("actualite", 3),
+    getArticlesParRubrique("cinema", 3),
+    getArticlesParRubrique("interview", 3),
+    getArticlesParRubrique("artisanat", 3),
     getPortraitEnAvant(),
     getLivresVitrine(),
     ...RUBRIQUES_VIVRE.map((r) => getArticlesParRubrique(r.slug, 1)),
@@ -53,11 +53,11 @@ export default async function Home() {
         <Hero principal={articlePrincipal} secondaires={articlesSecondaires} />
         <CultureSpotlight articles={articlesCulture} />
         <PortraitFeature portrait={portrait} />
-        <SectionGrid rubriqueSlug="politique" articles={articlesPolitique} />
-        <SectionGrid rubriqueSlug="economie" articles={articlesEconomie} />
+        <SectionGrid rubriqueSlug="actualite" articles={articlesActualite} />
+        <SectionGrid rubriqueSlug="cinema" articles={articlesCinema} />
         <TwoColumnList
-          gauche={{ rubriqueSlug: "societe", articles: articlesSociete }}
-          droite={{ rubriqueSlug: "diplomatie", articles: articlesDiplomatie }}
+          gauche={{ rubriqueSlug: "interview", articles: articlesInterview }}
+          droite={{ rubriqueSlug: "artisanat", articles: articlesArtisanat }}
         />
         <VivreGrid articlesParRubrique={articlesParRubriqueVivre} />
         <LiteratureShelf livres={livres} />

@@ -2,19 +2,20 @@
 // navigation. C'est la source de vérité unique : un composant qui a besoin
 // du libellé, du slug ou du cluster d'une rubrique lit ce fichier plutôt que
 // de recopier la chaîne en dur.
+//
+// Ligne éditoriale (2026-09-28, décision du PDG) : le journal devient un
+// média spécialisé dans l'art, la culture et les traditions africaines.
 
 export type RubriqueSlug =
-  | "politique"
-  | "economie"
-  | "societe"
-  | "diplomatie"
-  | "sport"
-  | "sante"
-  | "environnement"
-  | "developpement-durable"
-  | "education"
-  | "arts-culture-traditions"
-  | "religion"
+  | "actualite"
+  | "cinema"
+  | "interview"
+  | "artisanat"
+  | "musiques-folkloriques"
+  | "art-culinaire"
+  | "decouverte"
+  | "diaspora"
+  | "traditions-ancestrales"
   | "litterature"
   | "portrait";
 
@@ -26,17 +27,15 @@ export interface Rubrique {
 }
 
 export const RUBRIQUES: Rubrique[] = [
-  { slug: "politique", label: "Politique", cluster: "flat" },
-  { slug: "economie", label: "Économie", cluster: "flat" },
-  { slug: "societe", label: "Société", cluster: "flat" },
-  { slug: "diplomatie", label: "Diplomatie", cluster: "flat" },
-  { slug: "sport", label: "Sport", cluster: "flat" },
-  { slug: "sante", label: "Santé", cluster: "vivre" },
-  { slug: "environnement", label: "Environnement", cluster: "vivre" },
-  { slug: "developpement-durable", label: "Développement durable", cluster: "vivre" },
-  { slug: "education", label: "Éducation", cluster: "vivre" },
-  { slug: "arts-culture-traditions", label: "Arts, Culture & Traditions", cluster: "culture" },
-  { slug: "religion", label: "Religion", cluster: "culture" },
+  { slug: "actualite", label: "Actualité", cluster: "flat" },
+  { slug: "cinema", label: "Cinéma", cluster: "flat" },
+  { slug: "interview", label: "Interview", cluster: "flat" },
+  { slug: "artisanat", label: "Artisanat", cluster: "flat" },
+  { slug: "musiques-folkloriques", label: "Musiques folkloriques", cluster: "vivre" },
+  { slug: "art-culinaire", label: "Art culinaire", cluster: "vivre" },
+  { slug: "decouverte", label: "Découverte", cluster: "vivre" },
+  { slug: "diaspora", label: "Diaspora", cluster: "vivre" },
+  { slug: "traditions-ancestrales", label: "Traditions ancestrales", cluster: "culture" },
   { slug: "litterature", label: "Littérature", cluster: "culture" },
   { slug: "portrait", label: "Portraits", cluster: "culture" },
 ];

@@ -7,7 +7,7 @@ import { RUBRIQUES } from "@/lib/rubriques";
 
 export const metadata: Metadata = {
   title: "À propos",
-  description: "Astres Noirs Actu, média en ligne d'informations générales et continues, une publication des Éditions Astres Noirs.",
+  description: "Astres Noirs Actu, journal en ligne spécialisé en art, culture et traditions africaines, une publication des Éditions Astres Noirs.",
 };
 
 export default function AProposPage() {
@@ -25,13 +25,13 @@ export default function AProposPage() {
 
         <div className="font-body text-[16px] sm:text-[17px] leading-relaxed text-ink/85 space-y-5">
           <p>
-            Astres Noirs Actu est un média en ligne d&apos;informations générales et continues, publié par
-            les Éditions Astres Noirs depuis Yaoundé, au Cameroun.
+            Astres Noirs Actu est un journal en ligne spécialisé dans l&apos;art, la culture et les
+            traditions africaines, publié par les Éditions Astres Noirs depuis Yaoundé, au Cameroun.
           </p>
           <p>
-            Le journal couvre l&apos;actualité à travers {RUBRIQUES.length} rubriques —{" "}
-            {RUBRIQUES.map((r) => r.label).join(", ")} — avec l&apos;ambition de devenir une référence
-            de l&apos;information sur le continent africain.
+            Le journal couvre le patrimoine culturel du continent et de sa diaspora à travers{" "}
+            {RUBRIQUES.length} rubriques — {RUBRIQUES.map((r) => r.label).join(", ")} — avec
+            l&apos;ambition de devenir une référence culturelle sur le continent africain.
           </p>
         </div>
 

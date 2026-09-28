@@ -12,7 +12,7 @@ function ArrowRight() {
   );
 }
 
-/** Module de rubrique en grille de 3 cartes (Politique, Économie…). */
+/** Module de rubrique en grille de 3 cartes (Actualité, Cinéma…). */
 export function SectionGrid({ rubriqueSlug, articles }: { rubriqueSlug: RubriqueSlug; articles: Article[] }) {
   const r = rubrique(rubriqueSlug);
   return (

@@ -23,7 +23,7 @@ const archivo = Archivo({
 });
 
 const DESCRIPTION =
-  "Astres Noirs Actu : actualité, économie, société, diplomatie, arts et culture. Qui lira vivra.";
+  "Astres Noirs Actu : journal spécialisé en art, culture & traditions africaines. Valoriser le patrimoine culturel d'Afrique et sa diaspora.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

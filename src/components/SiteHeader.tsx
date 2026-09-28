@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { LogoMark } from "./Logo";
 import { MobileNav } from "./MobileNav";
+import { JujubeTree, PeaceTree } from "./TreeIcons";
 import { RUBRIQUES_FLAT, RUBRIQUES_VIVRE, RUBRIQUES_CULTURE } from "@/lib/rubriques";
 import { getDateEdition, getTickerALaUne } from "@/lib/content";
-import { SITE_SLOGAN } from "@/lib/contact";
+import { SITE_SLOGAN, SITE_DESCRIPTEUR } from "@/lib/contact";
 
 function ChevronDown() {
   return (
@@ -80,14 +81,18 @@ export async function SiteHeader() {
         <Link href="/" aria-label="Astres Noirs Actu — accueil">
           <LogoMark className="w-9 h-10 md:w-[54px] md:h-[61px] mb-2 md:mb-3" />
         </Link>
-        <div className="font-ui font-bold text-[9px] md:text-[11px] tracking-[0.1em] md:tracking-[0.12em] uppercase text-gold-deep mb-1 md:mb-1.5">
-          Le Journal
+        <div className="font-ui font-bold text-[9px] md:text-[11px] tracking-[0.1em] md:tracking-[0.12em] uppercase text-gold-deep mb-1 md:mb-1.5 text-center px-6">
+          {SITE_DESCRIPTEUR}
         </div>
         <div className="font-ui font-black text-[26px] sm:text-[34px] md:text-[50px] leading-none tracking-tight text-ink text-center">
           ASTRES NOIRS ACTU
         </div>
-        <div className="font-body italic text-[11px] md:text-[13px] text-ink/55 mt-1.5 md:mt-2 text-center">
-          {SITE_SLOGAN}
+        <div className="flex items-center justify-center gap-3 md:gap-5 mt-2 md:mt-3">
+          <JujubeTree className="w-6 h-6 md:w-8 md:h-8 shrink-0" />
+          <div className="font-body italic text-[11px] md:text-[13px] text-ink/55 text-center max-w-[280px] md:max-w-none">
+            {SITE_SLOGAN}
+          </div>
+          <PeaceTree className="w-6 h-6 md:w-8 md:h-8 shrink-0" />
         </div>
       </div>
 
@@ -106,8 +111,8 @@ export async function SiteHeader() {
               {r.label}
             </Link>
           ))}
-          <NavDropdown label="Vivre" items={RUBRIQUES_VIVRE} />
-          <NavDropdown label="Culture" items={RUBRIQUES_CULTURE} gold />
+          <NavDropdown label="Explorer" items={RUBRIQUES_VIVRE} />
+          <NavDropdown label="Patrimoine" items={RUBRIQUES_CULTURE} gold />
         </div>
 
         {/* Barre mobile : nom de la rubrique courante (Une) + bouton menu */}

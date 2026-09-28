@@ -79,7 +79,7 @@ export function MobileNav({
             ))}
 
             <div className="font-ui font-bold text-[11px] tracking-[0.14em] uppercase text-taupe pt-6 pb-2">
-              Vivre
+              Explorer
             </div>
             {vivre.map((r) => (
               <Link
@@ -93,7 +93,7 @@ export function MobileNav({
             ))}
 
             <div className="font-ui font-bold text-[11px] tracking-[0.14em] uppercase text-gold pt-6 pb-2">
-              Culture
+              Patrimoine
             </div>
             {culture.map((r) => (
               <Link

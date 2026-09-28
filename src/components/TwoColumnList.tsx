@@ -46,7 +46,7 @@ function Column({ rubriqueSlug, articles }: { rubriqueSlug: RubriqueSlug; articl
   );
 }
 
-/** Société et Diplomatie côte à côte sur grand écran, empilées sur mobile. */
+/** Deux rubriques côte à côte sur grand écran, empilées sur mobile. */
 export function TwoColumnList({
   gauche,
   droite,

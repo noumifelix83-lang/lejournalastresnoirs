@@ -12,14 +12,14 @@ function ArrowRight() {
 }
 
 /**
- * "Arts, Culture & Traditions" — désignée comme rubrique essentielle : elle a
+ * "Traditions ancestrales" — désignée comme rubrique essentielle : elle a
  * son propre bandeau, juste après le hero, plutôt que d'être une rubrique
  * comme les autres plus bas dans la page.
  */
 export function CultureSpotlight({ articles }: { articles: Article[] }) {
   return (
     <section
-      id="arts-culture-traditions"
+      id="traditions-ancestrales"
       className="w-full bg-paper-alt border-y border-rule py-8 md:py-14"
     >
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10">
@@ -28,13 +28,13 @@ export function CultureSpotlight({ articles }: { articles: Article[] }) {
             <div className="font-ui font-bold text-[11px] tracking-[0.12em] uppercase text-gold-deep mb-2">
               Rubrique phare
             </div>
-            <h2 className="font-display font-bold text-[24px] md:text-[32px] text-ink">Arts, Culture &amp; Traditions</h2>
+            <h2 className="font-display font-bold text-[24px] md:text-[32px] text-ink">Traditions ancestrales</h2>
             <p className="font-body text-[14px] md:text-[15px] text-ink/70 mt-2 max-w-[560px]">
-              Le patrimoine vivant, les scènes artistiques et les mémoires qui façonnent le continent.
+              Le patrimoine vivant, les rites et les mémoires qui façonnent le continent.
             </p>
           </div>
           <Link
-            href="/rubrique/arts-culture-traditions"
+            href="/rubrique/traditions-ancestrales"
             className="font-ui font-bold text-[12px] tracking-[0.05em] uppercase text-ink flex items-center gap-1.5 shrink-0"
           >
             Toute la rubrique <ArrowRight />
