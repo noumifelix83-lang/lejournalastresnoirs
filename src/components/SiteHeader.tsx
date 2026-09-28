@@ -1,7 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { LogoMark } from "./Logo";
 import { MobileNav } from "./MobileNav";
-import { JujubeTree, PeaceTree } from "./TreeIcons";
 import { RUBRIQUES_FLAT, RUBRIQUES_VIVRE, RUBRIQUES_CULTURE } from "@/lib/rubriques";
 import { getDateEdition, getTickerALaUne } from "@/lib/content";
 import { SITE_SLOGAN, SITE_DESCRIPTEUR } from "@/lib/contact";
@@ -88,11 +88,15 @@ export async function SiteHeader() {
           ASTRES NOIRS ACTU
         </div>
         <div className="flex items-center justify-center gap-3 md:gap-5 mt-2 md:mt-3">
-          <JujubeTree className="w-6 h-6 md:w-8 md:h-8 shrink-0" />
+          <div className="relative w-8 h-8 md:w-11 md:h-11 shrink-0 rounded-full overflow-hidden ring-1 ring-gold-deep/30">
+            <Image src="/img/jujube.jpeg" alt="Jujube" fill sizes="44px" className="object-cover" />
+          </div>
           <div className="font-body italic text-[11px] md:text-[13px] text-ink/55 text-center max-w-[280px] md:max-w-none">
             {SITE_SLOGAN}
           </div>
-          <PeaceTree className="w-6 h-6 md:w-8 md:h-8 shrink-0" />
+          <div className="relative w-8 h-8 md:w-11 md:h-11 shrink-0 rounded-full overflow-hidden ring-1 ring-gold-deep/30">
+            <Image src="/img/arbre-de-paix.webp" alt="Arbre de la paix" fill sizes="44px" className="object-cover" />
+          </div>
         </div>
       </div>
 
