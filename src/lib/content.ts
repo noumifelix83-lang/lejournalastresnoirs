@@ -150,6 +150,27 @@ const ARTICLES: Article[] = [
     image: { legende: "Illustration — Artisanat" },
   },
   {
+    slug: "intelligence-artificielle-langues-africaines",
+    rubrique: "high-tech",
+    titre: "Ces start-up qui entraînent l'intelligence artificielle sur les langues africaines",
+    publieIl_y_a: "Il y a 3 heures",
+    image: { legende: "Illustration — High Tech" },
+  },
+  {
+    slug: "applications-patrimoine-numerique",
+    rubrique: "high-tech",
+    titre: "Des applications pour numériser et préserver le patrimoine culturel",
+    publieIl_y_a: "Il y a 6 heures",
+    image: { legende: "Illustration — High Tech" },
+  },
+  {
+    slug: "fintech-afrique-revolution-paiements",
+    rubrique: "high-tech",
+    titre: "Fintech : la révolution des paiements mobiles continue de s'accélérer",
+    publieIl_y_a: "Il y a 9 heures",
+    image: { legende: "Illustration — High Tech" },
+  },
+  {
     slug: "mvet-epopee-chantee",
     rubrique: "musiques-folkloriques",
     titre: "Le Mvet, épopée chantée des peuples fang et béti",
@@ -386,6 +407,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
         publieIl_y_a: a.publieIl_y_a ? publieIlYA(a.publieIl_y_a) : "",
         image: mapImage(a.image),
         aLaUne: a.aLaUne ?? undefined,
+        vues: a.vues ?? 0,
       };
     }
   }

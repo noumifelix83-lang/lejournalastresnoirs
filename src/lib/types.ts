@@ -26,6 +26,8 @@ export interface Article {
   aLaUne?: boolean;
   /** Corps de l'article en Portable Text (Sanity) — absent pour un article de démonstration. */
   corps?: unknown;
+  /** Nombre de lectures, incrémenté via /api/vues — absent pour un article de démonstration. */
+  vues?: number;
 }
 
 export interface PortraitFeature {

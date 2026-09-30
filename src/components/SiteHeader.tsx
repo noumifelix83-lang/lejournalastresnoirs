@@ -4,7 +4,7 @@ import { LogoMark } from "./Logo";
 import { MobileNav } from "./MobileNav";
 import { RUBRIQUES_FLAT, RUBRIQUES_VIVRE, RUBRIQUES_CULTURE } from "@/lib/rubriques";
 import { getDateEdition, getTickerALaUne } from "@/lib/content";
-import { SITE_SLOGAN, SITE_DESCRIPTEUR } from "@/lib/contact";
+import { SITE_SLOGAN, SITE_KICKER } from "@/lib/contact";
 
 function ChevronDown() {
   return (
@@ -81,8 +81,8 @@ export async function SiteHeader() {
         <Link href="/" aria-label="Astres Noirs Actu — accueil">
           <LogoMark className="w-9 h-10 md:w-[54px] md:h-[61px] mb-2 md:mb-3" />
         </Link>
-        <div className="font-ui font-bold text-[9px] md:text-[11px] tracking-[0.1em] md:tracking-[0.12em] uppercase text-gold-deep mb-1 md:mb-1.5 text-center px-6">
-          {SITE_DESCRIPTEUR}
+        <div className="font-ui font-bold text-[13px] md:text-[17px] tracking-[0.12em] md:tracking-[0.14em] uppercase text-gold-deep mb-1 md:mb-1.5 text-center px-6">
+          {SITE_KICKER}
         </div>
         <div className="font-ui font-black text-[26px] sm:text-[34px] md:text-[50px] leading-none tracking-tight text-ink text-center">
           ASTRES NOIRS ACTU
@@ -102,7 +102,7 @@ export async function SiteHeader() {
 
       {/* Navigation desktop */}
       <nav className="w-full bg-ink">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 hidden md:flex items-center justify-center gap-9">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 hidden md:flex items-center justify-center gap-5 lg:gap-9 flex-wrap lg:flex-nowrap">
           <Link href="/" className="font-ui font-bold text-[13px] tracking-[0.04em] uppercase text-gold py-4 border-b-2 border-gold">
             Une
           </Link>
@@ -110,7 +110,7 @@ export async function SiteHeader() {
             <Link
               key={r.slug}
               href={`/rubrique/${r.slug}`}
-              className="font-ui font-bold text-[13px] tracking-[0.04em] uppercase text-paper py-4 border-b-2 border-transparent hover:border-gold hover:text-gold transition-colors"
+              className="font-ui font-bold text-[13px] tracking-[0.04em] uppercase text-paper py-4 border-b-2 border-transparent hover:border-gold hover:text-gold transition-colors whitespace-nowrap"
             >
               {r.label}
             </Link>

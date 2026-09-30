@@ -49,17 +49,16 @@ export type Article = {
   titre?: string;
   slug?: Slug;
   rubrique?:
-    | "politique"
-    | "economie"
-    | "societe"
-    | "diplomatie"
-    | "sport"
-    | "sante"
-    | "environnement"
-    | "developpement-durable"
-    | "education"
-    | "arts-culture-traditions"
-    | "religion"
+    | "actualite"
+    | "cinema"
+    | "interview"
+    | "artisanat"
+    | "high-tech"
+    | "musiques-folkloriques"
+    | "art-culinaire"
+    | "decouverte"
+    | "diaspora"
+    | "traditions-ancestrales"
     | "litterature"
     | "portrait";
   chapo?: string;
@@ -105,6 +104,7 @@ export type Article = {
   auteur?: AuteurReference;
   publieLe?: string;
   aLaUne?: boolean;
+  vues?: number;
 };
 
 export type Auteur = {
@@ -268,19 +268,18 @@ export type AllSanitySchemaTypes =
 export type ARTICLE_A_LA_UNE_QUERY_RESULT = {
   slug: string | null;
   rubrique:
-    | "arts-culture-traditions"
-    | "developpement-durable"
-    | "diplomatie"
-    | "economie"
-    | "education"
-    | "environnement"
+    | "actualite"
+    | "art-culinaire"
+    | "artisanat"
+    | "cinema"
+    | "decouverte"
+    | "diaspora"
+    | "high-tech"
+    | "interview"
     | "litterature"
-    | "politique"
+    | "musiques-folkloriques"
     | "portrait"
-    | "religion"
-    | "sante"
-    | "societe"
-    | "sport"
+    | "traditions-ancestrales"
     | null;
   titre: string | null;
   chapo: string | null;
@@ -301,19 +300,18 @@ export type ARTICLE_A_LA_UNE_QUERY_RESULT = {
 export type ARTICLES_SECONDAIRES_QUERY_RESULT = Array<{
   slug: string | null;
   rubrique:
-    | "arts-culture-traditions"
-    | "developpement-durable"
-    | "diplomatie"
-    | "economie"
-    | "education"
-    | "environnement"
+    | "actualite"
+    | "art-culinaire"
+    | "artisanat"
+    | "cinema"
+    | "decouverte"
+    | "diaspora"
+    | "high-tech"
+    | "interview"
     | "litterature"
-    | "politique"
+    | "musiques-folkloriques"
     | "portrait"
-    | "religion"
-    | "sante"
-    | "societe"
-    | "sport"
+    | "traditions-ancestrales"
     | null;
   titre: string | null;
   publieIl_y_a: string | null;
@@ -331,19 +329,18 @@ export type ARTICLES_SECONDAIRES_QUERY_RESULT = Array<{
 export type ARTICLES_PAR_RUBRIQUE_QUERY_RESULT = Array<{
   slug: string | null;
   rubrique:
-    | "arts-culture-traditions"
-    | "developpement-durable"
-    | "diplomatie"
-    | "economie"
-    | "education"
-    | "environnement"
+    | "actualite"
+    | "art-culinaire"
+    | "artisanat"
+    | "cinema"
+    | "decouverte"
+    | "diaspora"
+    | "high-tech"
+    | "interview"
     | "litterature"
-    | "politique"
+    | "musiques-folkloriques"
     | "portrait"
-    | "religion"
-    | "sante"
-    | "societe"
-    | "sport"
+    | "traditions-ancestrales"
     | null;
   titre: string | null;
   extrait: string | null;
@@ -362,19 +359,18 @@ export type ARTICLES_PAR_RUBRIQUE_QUERY_RESULT = Array<{
 export type ARTICLES_RUBRIQUE_COMPLETE_QUERY_RESULT = Array<{
   slug: string | null;
   rubrique:
-    | "arts-culture-traditions"
-    | "developpement-durable"
-    | "diplomatie"
-    | "economie"
-    | "education"
-    | "environnement"
+    | "actualite"
+    | "art-culinaire"
+    | "artisanat"
+    | "cinema"
+    | "decouverte"
+    | "diaspora"
+    | "high-tech"
+    | "interview"
     | "litterature"
-    | "politique"
+    | "musiques-folkloriques"
     | "portrait"
-    | "religion"
-    | "sante"
-    | "societe"
-    | "sport"
+    | "traditions-ancestrales"
     | null;
   titre: string | null;
   extrait: string | null;
@@ -407,23 +403,22 @@ export type PORTRAIT_EN_AVANT_QUERY_RESULT = {
 
 // Source: ../web/src/lib/sanity/queries.ts
 // Variable: ARTICLE_BY_SLUG_QUERY
-// Query: *[_type == "article" && slug.current == $slug][0] {    "slug": slug.current,    rubrique,    titre,    chapo,    extrait,    corps,    "auteur": auteur->nom,    "auteurRole": auteur->role,    "auteurPhoto": auteur->photo{      "url": asset->url,      "width": asset->metadata.dimensions.width,      "height": asset->metadata.dimensions.height    },    "publieIl_y_a": publieLe,    "image": imagePrincipale{    "legende": legende,    "url": asset->url,    "width": asset->metadata.dimensions.width,    "height": asset->metadata.dimensions.height  },    aLaUne  }
+// Query: *[_type == "article" && slug.current == $slug][0] {    "slug": slug.current,    rubrique,    titre,    chapo,    extrait,    corps,    "auteur": auteur->nom,    "auteurRole": auteur->role,    "auteurPhoto": auteur->photo{      "url": asset->url,      "width": asset->metadata.dimensions.width,      "height": asset->metadata.dimensions.height    },    "publieIl_y_a": publieLe,    "image": imagePrincipale{    "legende": legende,    "url": asset->url,    "width": asset->metadata.dimensions.width,    "height": asset->metadata.dimensions.height  },    aLaUne,    vues  }
 export type ARTICLE_BY_SLUG_QUERY_RESULT = {
   slug: string | null;
   rubrique:
-    | "arts-culture-traditions"
-    | "developpement-durable"
-    | "diplomatie"
-    | "economie"
-    | "education"
-    | "environnement"
+    | "actualite"
+    | "art-culinaire"
+    | "artisanat"
+    | "cinema"
+    | "decouverte"
+    | "diaspora"
+    | "high-tech"
+    | "interview"
     | "litterature"
-    | "politique"
+    | "musiques-folkloriques"
     | "portrait"
-    | "religion"
-    | "sante"
-    | "societe"
-    | "sport"
+    | "traditions-ancestrales"
     | null;
   titre: string | null;
   chapo: string | null;
@@ -472,6 +467,7 @@ export type ARTICLE_BY_SLUG_QUERY_RESULT = {
     height: number | null;
   } | null;
   aLaUne: boolean | null;
+  vues: number | null;
 } | null;
 
 // Source: ../web/src/lib/sanity/queries.ts
@@ -490,7 +486,7 @@ declare global {
     '\n  *[_type == "article" && rubrique == $rubrique && aLaUne != true]\n    | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, extrait,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_PAR_RUBRIQUE_QUERY_RESULT;
     '\n  *[_type == "article" && rubrique == $rubrique] | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, extrait, chapo,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_RUBRIQUE_COMPLETE_QUERY_RESULT;
     '\n  *[_type == "article" && rubrique == "portrait"] | order(publieLe desc) [0] {\n    citation,\n    "nom": auteur->nom,\n    "role": auteur->role,\n    extrait,\n    "slug": slug.current,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': PORTRAIT_EN_AVANT_QUERY_RESULT;
-    '\n  *[_type == "article" && slug.current == $slug][0] {\n    "slug": slug.current,\n    rubrique,\n    titre,\n    chapo,\n    extrait,\n    corps,\n    "auteur": auteur->nom,\n    "auteurRole": auteur->role,\n    "auteurPhoto": auteur->photo{\n      "url": asset->url,\n      "width": asset->metadata.dimensions.width,\n      "height": asset->metadata.dimensions.height\n    },\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  },\n    aLaUne\n  }\n': ARTICLE_BY_SLUG_QUERY_RESULT;
+    '\n  *[_type == "article" && slug.current == $slug][0] {\n    "slug": slug.current,\n    rubrique,\n    titre,\n    chapo,\n    extrait,\n    corps,\n    "auteur": auteur->nom,\n    "auteurRole": auteur->role,\n    "auteurPhoto": auteur->photo{\n      "url": asset->url,\n      "width": asset->metadata.dimensions.width,\n      "height": asset->metadata.dimensions.height\n    },\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  },\n    aLaUne,\n    vues\n  }\n': ARTICLE_BY_SLUG_QUERY_RESULT;
     '\n  *[_type == "article"] { "slug": slug.current, "publieLe": publieLe }\n': TOUS_LES_SLUGS_QUERY_RESULT;
   }
 }

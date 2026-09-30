@@ -87,7 +87,8 @@ export const ARTICLE_BY_SLUG_QUERY = defineQuery(`
     },
     "publieIl_y_a": publieLe,
     "image": ${IMAGE_PROJECTION},
-    aLaUne
+    aLaUne,
+    vues
   }
 `);
 

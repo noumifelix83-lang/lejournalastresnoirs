@@ -8,6 +8,7 @@ import { ArticleImage } from "@/components/ArticleImage";
 import { ShareBar } from "@/components/ShareBar";
 import { EditionsBand } from "@/components/EditionsBand";
 import { AuteurByline } from "@/components/AuteurByline";
+import { VueCounter } from "@/components/VueCounter";
 import { getArticleBySlug } from "@/lib/content";
 import { rubrique } from "@/lib/rubriques";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -79,9 +80,17 @@ export default async function ArticlePage({ params }: Props) {
         ) : null}
 
         <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-6 border-b border-rule">
-          <div className="font-ui font-semibold text-[11px] tracking-[0.05em] uppercase text-taupe">
-            {article.auteur ? `${article.auteur} · ` : ""}
-            {article.publieIl_y_a}
+          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 font-ui font-semibold text-[11px] tracking-[0.05em] uppercase text-taupe">
+            <span>
+              {article.auteur ? `${article.auteur} · ` : ""}
+              {article.publieIl_y_a}
+            </span>
+            {article.vues !== undefined ? (
+              <>
+                <span className="text-taupe/40">·</span>
+                <VueCounter slug={article.slug} initial={article.vues} />
+              </>
+            ) : null}
           </div>
           <ShareBar url={url} titre={article.titre} />
         </div>

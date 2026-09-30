@@ -11,6 +11,7 @@ export type RubriqueSlug =
   | "cinema"
   | "interview"
   | "artisanat"
+  | "high-tech"
   | "musiques-folkloriques"
   | "art-culinaire"
   | "decouverte"
@@ -31,6 +32,7 @@ export const RUBRIQUES: Rubrique[] = [
   { slug: "cinema", label: "Cinéma", cluster: "flat" },
   { slug: "interview", label: "Interview", cluster: "flat" },
   { slug: "artisanat", label: "Artisanat", cluster: "flat" },
+  { slug: "high-tech", label: "High Tech", cluster: "flat" },
   { slug: "musiques-folkloriques", label: "Musiques folkloriques", cluster: "vivre" },
   { slug: "art-culinaire", label: "Art culinaire", cluster: "vivre" },
   { slug: "decouverte", label: "Découverte", cluster: "vivre" },
