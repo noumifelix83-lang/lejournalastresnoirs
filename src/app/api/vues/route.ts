@@ -21,15 +21,22 @@ export async function POST(request: Request) {
   // Incrémente de façon atomique : deux lectures simultanées ne se
   // marchent pas dessus. `setIfMissing` couvre les articles publiés
   // avant l'ajout du champ (jamais encore initialisé à 0).
-  const updated = await sanityWriteClient
+  await sanityWriteClient
     .patch({ query: `*[_type == "article" && slug.current == $slug][0]`, params: { slug: body.slug } })
     .setIfMissing({ vues: 0 })
     .inc({ vues: 1 })
-    .commit({ returnDocuments: true });
+    .commit();
 
-  if (!updated) {
+  // `commit()` sur un patch cible par requête ne renvoie pas le document
+  // à jour de façon fiable : on relit la valeur pour l'afficher au client.
+  const vues = await sanityWriteClient.fetch<number | null>(
+    `*[_type == "article" && slug.current == $slug][0].vues`,
+    { slug: body.slug }
+  );
+
+  if (vues === null) {
     return NextResponse.json({ error: "Article introuvable." }, { status: 404 });
   }
 
-  return NextResponse.json({ vues: updated.vues as number });
+  return NextResponse.json({ vues });
 }
