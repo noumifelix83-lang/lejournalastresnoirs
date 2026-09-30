@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { LogoMark } from "./Logo";
 import { MobileNav } from "./MobileNav";
 import { RUBRIQUES_FLAT, RUBRIQUES_VIVRE, RUBRIQUES_CULTURE } from "@/lib/rubriques";
@@ -87,16 +86,8 @@ export async function SiteHeader() {
         <div className="font-ui font-black text-[26px] sm:text-[34px] md:text-[50px] leading-none tracking-tight text-ink text-center">
           ASTRES NOIRS ACTU
         </div>
-        <div className="flex items-center justify-center gap-3 md:gap-5 mt-2 md:mt-3">
-          <div className="relative w-8 h-8 md:w-11 md:h-11 shrink-0 rounded-full overflow-hidden ring-1 ring-gold-deep/30">
-            <Image src="/img/jujube.jpeg" alt="Jujube" fill sizes="44px" className="object-cover" />
-          </div>
-          <div className="font-body italic text-[11px] md:text-[13px] text-ink/55 text-center max-w-[280px] md:max-w-none">
-            {SITE_SLOGAN}
-          </div>
-          <div className="relative w-8 h-8 md:w-11 md:h-11 shrink-0 rounded-full overflow-hidden ring-1 ring-gold-deep/30">
-            <Image src="/img/arbre-de-paix.webp" alt="Arbre de la paix" fill sizes="44px" className="object-cover" />
-          </div>
+        <div className="font-body italic text-[11px] md:text-[13px] text-ink/55 mt-2 md:mt-3 text-center max-w-[280px] md:max-w-none">
+          {SITE_SLOGAN}
         </div>
       </div>
 
