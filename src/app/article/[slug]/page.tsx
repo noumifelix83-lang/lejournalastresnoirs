@@ -23,30 +23,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description =
     article.chapo || article.extrait || `${rubrique(article.rubrique).label} — ${SITE_NAME}`;
   const url = `${SITE_URL}/article/${article.slug}`;
-  // Next.js ne fusionne pas `openGraph.images` avec celui du layout racine
-  // dès qu'une page définit son propre `openGraph` : on retombe donc
-  // explicitement sur l'image par défaut tant que l'article n'a pas de photo.
-  const image = article.image?.url
-    ? [{ url: article.image.url, width: article.image.width, height: article.image.height }]
-    : [{ url: "/og-default.png", width: 1200, height: 630 }];
 
+  // L'image de partage est générée dynamiquement par opengraph-image.tsx
+  // (bandeau de marque + vraie photo de l'article) : pas besoin de la
+  // redéfinir ici, Next.js la rattache automatiquement.
   return {
     title: article.titre,
     description,
     alternates: { canonical: url },
-    openGraph: {
-      title: article.titre,
-      description,
-      url,
-      type: "article",
-      images: image,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: article.titre,
-      description,
-      images: image?.map((i) => i.url),
-    },
+    openGraph: { title: article.titre, description, url, type: "article" },
+    twitter: { card: "summary_large_image", title: article.titre, description },
   };
 }
 
