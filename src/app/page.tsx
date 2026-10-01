@@ -23,6 +23,7 @@ export default async function Home() {
     articlesSecondaires,
     articlesCulture,
     articlesActualite,
+    articlesPolitique,
     articlesCinema,
     articlesInterview,
     articlesArtisanat,
@@ -32,8 +33,9 @@ export default async function Home() {
   ] = await Promise.all([
     getArticleALaUne(),
     getArticlesSecondaires(3),
-    getArticlesParRubrique("traditions-ancestrales", 4),
+    getArticlesParRubrique("arts-culture-traditions", 4),
     getArticlesParRubrique("actualite", 3),
+    getArticlesParRubrique("politique", 3),
     getArticlesParRubrique("cinema", 3),
     getArticlesParRubrique("interview", 3),
     getArticlesParRubrique("artisanat", 3),
@@ -54,6 +56,7 @@ export default async function Home() {
         <CultureSpotlight articles={articlesCulture} />
         <PortraitFeature portrait={portrait} />
         <SectionGrid rubriqueSlug="actualite" articles={articlesActualite} />
+        <SectionGrid rubriqueSlug="politique" articles={articlesPolitique} />
         <SectionGrid rubriqueSlug="cinema" articles={articlesCinema} />
         <TwoColumnList
           gauche={{ rubriqueSlug: "interview", articles: articlesInterview }}

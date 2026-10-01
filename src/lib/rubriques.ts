@@ -8,6 +8,7 @@
 
 export type RubriqueSlug =
   | "actualite"
+  | "politique"
   | "cinema"
   | "interview"
   | "artisanat"
@@ -16,7 +17,7 @@ export type RubriqueSlug =
   | "art-culinaire"
   | "decouverte"
   | "diaspora"
-  | "traditions-ancestrales"
+  | "arts-culture-traditions"
   | "litterature"
   | "portrait";
 
@@ -29,6 +30,7 @@ export interface Rubrique {
 
 export const RUBRIQUES: Rubrique[] = [
   { slug: "actualite", label: "Actualité", cluster: "flat" },
+  { slug: "politique", label: "Politique", cluster: "flat" },
   { slug: "cinema", label: "Cinéma", cluster: "flat" },
   { slug: "interview", label: "Interview", cluster: "flat" },
   { slug: "artisanat", label: "Artisanat", cluster: "flat" },
@@ -37,7 +39,7 @@ export const RUBRIQUES: Rubrique[] = [
   { slug: "art-culinaire", label: "Art culinaire", cluster: "vivre" },
   { slug: "decouverte", label: "Découverte", cluster: "vivre" },
   { slug: "diaspora", label: "Diaspora", cluster: "vivre" },
-  { slug: "traditions-ancestrales", label: "Traditions ancestrales", cluster: "culture" },
+  { slug: "arts-culture-traditions", label: "Arts, Culture & Traditions", cluster: "culture" },
   { slug: "litterature", label: "Littérature", cluster: "culture" },
   { slug: "portrait", label: "Portraits", cluster: "culture" },
 ];
