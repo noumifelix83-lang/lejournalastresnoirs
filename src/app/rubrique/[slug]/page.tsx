@@ -23,21 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!r) return {};
 
   const description = `Tous les articles de la rubrique ${r.label} sur Astres Noirs Actu.`;
-  const articles = await getArticlesRubriqueComplete(slug as RubriqueSlug, 1);
-  const premiereImage = articles[0]?.image;
-  // Comme pour les articles : sans image propre à la rubrique, on retombe
-  // explicitement sur l'image par défaut (Next.js ne fusionne pas
-  // `openGraph.images` du layout racine dès qu'une page définit son propre
-  // `openGraph`).
-  const image = premiereImage?.url
-    ? [{ url: premiereImage.url, width: premiereImage.width, height: premiereImage.height }]
-    : [{ url: "/og-default.png", width: 1200, height: 630 }];
 
+  // L'image de partage est générée dynamiquement par opengraph-image.tsx
+  // (bandeau de marque + photo du premier article de la rubrique).
   return {
     title: r.label,
     description,
-    openGraph: { title: r.label, description, images: image },
-    twitter: { card: "summary_large_image", title: r.label, description, images: image.map((i) => i.url) },
+    openGraph: { title: r.label, description },
+    twitter: { card: "summary_large_image", title: r.label, description },
   };
 }
 
