@@ -64,6 +64,12 @@ export async function SiteHeader() {
           </div>
           <div className="flex items-center gap-4 sm:gap-5 shrink-0">
             <Link
+              href="/services"
+              className="hidden sm:inline font-ui font-semibold text-[11.5px] tracking-[0.05em] uppercase text-gold hover:text-paper"
+            >
+              Nos services
+            </Link>
+            <Link
               href="/abonnement"
               className="hidden sm:inline font-ui font-semibold text-[11.5px] tracking-[0.05em] uppercase text-paper/65 hover:text-gold"
             >

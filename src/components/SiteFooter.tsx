@@ -40,6 +40,7 @@ export function SiteFooter() {
           <div className="flex flex-col gap-2.5 mb-6">
             <Link href="/a-propos" className="font-ui text-[13.5px] text-paper/72 hover:text-gold">À propos</Link>
             <Link href="/redaction" className="font-ui text-[13.5px] text-paper/72 hover:text-gold">La rédaction</Link>
+            <Link href="/services" className="font-ui text-[13.5px] text-paper/72 hover:text-gold">Nos services</Link>
             <Link href="/contact" className="font-ui text-[13.5px] text-paper/72 hover:text-gold">Contact</Link>
           </div>
           <div className="font-ui font-bold text-[11px] tracking-[0.12em] uppercase text-paper/40 mb-3">
