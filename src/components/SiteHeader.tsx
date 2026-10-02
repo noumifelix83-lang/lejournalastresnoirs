@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LogoMark } from "./Logo";
 import { MobileNav } from "./MobileNav";
+import { MarqueeTicker } from "./MarqueeTicker";
 import { RUBRIQUES_FLAT, RUBRIQUES_VIVRE, RUBRIQUES_CULTURE } from "@/lib/rubriques";
 import { getDateEdition, getTickerALaUne } from "@/lib/content";
 import { SITE_SLOGAN, SITE_KICKER } from "@/lib/contact";
@@ -117,20 +118,7 @@ export async function SiteHeader() {
         </div>
       </nav>
 
-      {/* Bandeau à la une */}
-      <div className="w-full bg-gold">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-10 h-9 md:h-[38px] flex items-center gap-3 md:gap-4 overflow-x-auto whitespace-nowrap [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <span className="font-ui font-black text-[10px] md:text-[11px] tracking-[0.08em] uppercase bg-ink text-gold px-2 md:px-2.5 py-1 shrink-0">
-            À la une
-          </span>
-          {ticker.map((item, i) => (
-            <span key={item} className="flex items-center gap-3 md:gap-4 shrink-0">
-              {i > 0 ? <span className="text-ink/40">•</span> : null}
-              <span className="font-ui font-semibold text-[11.5px] md:text-[12.5px] text-ink">{item}</span>
-            </span>
-          ))}
-        </div>
-      </div>
+      <MarqueeTicker items={ticker} />
     </header>
   );
 }
