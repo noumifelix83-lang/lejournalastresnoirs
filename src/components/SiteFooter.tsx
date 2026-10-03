@@ -5,6 +5,10 @@ import { RUBRIQUES } from "@/lib/rubriques";
 import { CONTACT, SITE_SLOGAN } from "@/lib/contact";
 import { EDITIONS_SITE_WEB } from "@/lib/editions";
 
+// Seuls les réseaux avec un vrai lien sont affichés : mieux vaut
+// l'absence d'un bouton qu'un lien mort vers "#".
+const RESEAUX = [{ label: "Facebook", href: "https://www.facebook.com/profile.php?id=61573333943207" }];
+
 export function SiteFooter() {
   const moitie = Math.ceil(RUBRIQUES.length / 2);
   const colonne1 = RUBRIQUES.slice(0, moitie);
@@ -23,10 +27,16 @@ export function SiteFooter() {
             Astres Noirs Actu est une publication numérique des Éditions Astres Noirs. {SITE_SLOGAN}.
           </p>
           <div className="flex gap-4 mt-4">
-            {["Facebook", "Instagram", "X"].map((s) => (
-              <Link key={s} href="#" className="font-ui font-semibold text-[12px] tracking-[0.04em] uppercase text-paper/55 hover:text-gold">
-                {s}
-              </Link>
+            {RESEAUX.map((r) => (
+              <a
+                key={r.label}
+                href={r.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-ui font-semibold text-[12px] tracking-[0.04em] uppercase text-paper/55 hover:text-gold"
+              >
+                {r.label}
+              </a>
             ))}
           </div>
         </div>
