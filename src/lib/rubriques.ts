@@ -9,6 +9,8 @@
 export type RubriqueSlug =
   | "actualite"
   | "politique"
+  | "economie"
+  | "societe"
   | "cinema"
   | "interview"
   | "artisanat"
@@ -31,6 +33,8 @@ export interface Rubrique {
 export const RUBRIQUES: Rubrique[] = [
   { slug: "actualite", label: "Actualité", cluster: "flat" },
   { slug: "politique", label: "Politique", cluster: "flat" },
+  { slug: "economie", label: "Économie", cluster: "flat" },
+  { slug: "societe", label: "Société", cluster: "flat" },
   { slug: "cinema", label: "Cinéma", cluster: "flat" },
   { slug: "interview", label: "Interview", cluster: "flat" },
   { slug: "artisanat", label: "Artisanat", cluster: "flat" },
