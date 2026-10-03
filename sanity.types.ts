@@ -50,6 +50,9 @@ export type Article = {
   slug?: Slug;
   rubrique?:
     | "actualite"
+    | "politique"
+    | "economie"
+    | "societe"
     | "cinema"
     | "interview"
     | "artisanat"
@@ -58,7 +61,7 @@ export type Article = {
     | "art-culinaire"
     | "decouverte"
     | "diaspora"
-    | "traditions-ancestrales"
+    | "arts-culture-traditions"
     | "litterature"
     | "portrait";
   chapo?: string;
@@ -101,6 +104,8 @@ export type Article = {
     _type: "image";
   };
   citation?: string;
+  sujetNom?: string;
+  sujetRole?: string;
   auteur?: AuteurReference;
   publieLe?: string;
   aLaUne?: boolean;
@@ -271,15 +276,18 @@ export type ARTICLE_A_LA_UNE_QUERY_RESULT = {
     | "actualite"
     | "art-culinaire"
     | "artisanat"
+    | "arts-culture-traditions"
     | "cinema"
     | "decouverte"
     | "diaspora"
+    | "economie"
     | "high-tech"
     | "interview"
     | "litterature"
     | "musiques-folkloriques"
+    | "politique"
     | "portrait"
-    | "traditions-ancestrales"
+    | "societe"
     | null;
   titre: string | null;
   chapo: string | null;
@@ -303,15 +311,18 @@ export type ARTICLES_SECONDAIRES_QUERY_RESULT = Array<{
     | "actualite"
     | "art-culinaire"
     | "artisanat"
+    | "arts-culture-traditions"
     | "cinema"
     | "decouverte"
     | "diaspora"
+    | "economie"
     | "high-tech"
     | "interview"
     | "litterature"
     | "musiques-folkloriques"
+    | "politique"
     | "portrait"
-    | "traditions-ancestrales"
+    | "societe"
     | null;
   titre: string | null;
   publieIl_y_a: string | null;
@@ -332,15 +343,18 @@ export type ARTICLES_PAR_RUBRIQUE_QUERY_RESULT = Array<{
     | "actualite"
     | "art-culinaire"
     | "artisanat"
+    | "arts-culture-traditions"
     | "cinema"
     | "decouverte"
     | "diaspora"
+    | "economie"
     | "high-tech"
     | "interview"
     | "litterature"
     | "musiques-folkloriques"
+    | "politique"
     | "portrait"
-    | "traditions-ancestrales"
+    | "societe"
     | null;
   titre: string | null;
   extrait: string | null;
@@ -362,15 +376,18 @@ export type ARTICLES_RUBRIQUE_COMPLETE_QUERY_RESULT = Array<{
     | "actualite"
     | "art-culinaire"
     | "artisanat"
+    | "arts-culture-traditions"
     | "cinema"
     | "decouverte"
     | "diaspora"
+    | "economie"
     | "high-tech"
     | "interview"
     | "litterature"
     | "musiques-folkloriques"
+    | "politique"
     | "portrait"
-    | "traditions-ancestrales"
+    | "societe"
     | null;
   titre: string | null;
   extrait: string | null;
@@ -386,7 +403,7 @@ export type ARTICLES_RUBRIQUE_COMPLETE_QUERY_RESULT = Array<{
 
 // Source: ../web/src/lib/sanity/queries.ts
 // Variable: PORTRAIT_EN_AVANT_QUERY
-// Query: *[_type == "article" && rubrique == "portrait"] | order(publieLe desc) [0] {    citation,    "nom": auteur->nom,    "role": auteur->role,    extrait,    "slug": slug.current,    "image": imagePrincipale{    "legende": legende,    "url": asset->url,    "width": asset->metadata.dimensions.width,    "height": asset->metadata.dimensions.height  }  }
+// Query: *[_type == "article" && rubrique == "portrait"] | order(publieLe desc) [0] {    citation,    "nom": sujetNom,    "role": sujetRole,    extrait,    "slug": slug.current,    "image": imagePrincipale{    "legende": legende,    "url": asset->url,    "width": asset->metadata.dimensions.width,    "height": asset->metadata.dimensions.height  }  }
 export type PORTRAIT_EN_AVANT_QUERY_RESULT = {
   citation: string | null;
   nom: string | null;
@@ -410,15 +427,18 @@ export type ARTICLE_BY_SLUG_QUERY_RESULT = {
     | "actualite"
     | "art-culinaire"
     | "artisanat"
+    | "arts-culture-traditions"
     | "cinema"
     | "decouverte"
     | "diaspora"
+    | "economie"
     | "high-tech"
     | "interview"
     | "litterature"
     | "musiques-folkloriques"
+    | "politique"
     | "portrait"
-    | "traditions-ancestrales"
+    | "societe"
     | null;
   titre: string | null;
   chapo: string | null;
@@ -485,7 +505,7 @@ declare global {
     '\n  *[_type == "article" && aLaUne != true] | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_SECONDAIRES_QUERY_RESULT;
     '\n  *[_type == "article" && rubrique == $rubrique && aLaUne != true]\n    | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, extrait,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_PAR_RUBRIQUE_QUERY_RESULT;
     '\n  *[_type == "article" && rubrique == $rubrique] | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, extrait, chapo,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_RUBRIQUE_COMPLETE_QUERY_RESULT;
-    '\n  *[_type == "article" && rubrique == "portrait"] | order(publieLe desc) [0] {\n    citation,\n    "nom": auteur->nom,\n    "role": auteur->role,\n    extrait,\n    "slug": slug.current,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': PORTRAIT_EN_AVANT_QUERY_RESULT;
+    '\n  *[_type == "article" && rubrique == "portrait"] | order(publieLe desc) [0] {\n    citation,\n    "nom": sujetNom,\n    "role": sujetRole,\n    extrait,\n    "slug": slug.current,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': PORTRAIT_EN_AVANT_QUERY_RESULT;
     '\n  *[_type == "article" && slug.current == $slug][0] {\n    "slug": slug.current,\n    rubrique,\n    titre,\n    chapo,\n    extrait,\n    corps,\n    "auteur": auteur->nom,\n    "auteurRole": auteur->role,\n    "auteurPhoto": auteur->photo{\n      "url": asset->url,\n      "width": asset->metadata.dimensions.width,\n      "height": asset->metadata.dimensions.height\n    },\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  },\n    aLaUne,\n    vues\n  }\n': ARTICLE_BY_SLUG_QUERY_RESULT;
     '\n  *[_type == "article"] { "slug": slug.current, "publieLe": publieLe }\n': TOUS_LES_SLUGS_QUERY_RESULT;
   }

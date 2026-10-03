@@ -62,8 +62,8 @@ export const ARTICLES_RUBRIQUE_COMPLETE_QUERY = defineQuery(`
 export const PORTRAIT_EN_AVANT_QUERY = defineQuery(`
   *[_type == "article" && rubrique == "portrait"] | order(publieLe desc) [0] {
     citation,
-    "nom": auteur->nom,
-    "role": auteur->role,
+    "nom": sujetNom,
+    "role": sujetRole,
     extrait,
     "slug": slug.current,
     "image": ${IMAGE_PROJECTION}
