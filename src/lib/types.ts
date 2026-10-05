@@ -23,6 +23,8 @@ export interface Article {
   auteurPhoto?: ArticleImage;
   publieIl_y_a: string; // ex. "Il y a 2 heures" — remplacé par une vraie date une fois le CMS branché
   image?: ArticleImage;
+  /** URL d'une vidéo (message, capsule…), affichée au-dessus du corps de l'article. */
+  video?: string;
   aLaUne?: boolean;
   /** Corps de l'article en Portable Text (Sanity) — absent pour un article de démonstration. */
   corps?: unknown;

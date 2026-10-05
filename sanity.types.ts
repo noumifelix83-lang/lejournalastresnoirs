@@ -33,6 +33,13 @@ export type SanityImageAssetReference = {
   [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
+export type SanityFileAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+};
+
 export type AuteurReference = {
   _ref: string;
   _type: "reference";
@@ -102,6 +109,11 @@ export type Article = {
     crop?: SanityImageCrop;
     legende?: string;
     _type: "image";
+  };
+  video?: {
+    asset?: SanityFileAssetReference;
+    media?: unknown;
+    _type: "file";
   };
   citation?: string;
   sujetNom?: string;
@@ -252,6 +264,7 @@ export type Geopoint = {
 export type AllSanitySchemaTypes =
   | Abonne
   | SanityImageAssetReference
+  | SanityFileAssetReference
   | AuteurReference
   | Article
   | Auteur
@@ -420,7 +433,7 @@ export type PORTRAIT_EN_AVANT_QUERY_RESULT = {
 
 // Source: ../web/src/lib/sanity/queries.ts
 // Variable: ARTICLE_BY_SLUG_QUERY
-// Query: *[_type == "article" && slug.current == $slug][0] {    "slug": slug.current,    rubrique,    titre,    chapo,    extrait,    corps,    "auteur": auteur->nom,    "auteurRole": auteur->role,    "auteurPhoto": auteur->photo{      "url": asset->url,      "width": asset->metadata.dimensions.width,      "height": asset->metadata.dimensions.height    },    "publieIl_y_a": publieLe,    "image": imagePrincipale{    "legende": legende,    "url": asset->url,    "width": asset->metadata.dimensions.width,    "height": asset->metadata.dimensions.height  },    aLaUne,    vues  }
+// Query: *[_type == "article" && slug.current == $slug][0] {    "slug": slug.current,    rubrique,    titre,    chapo,    extrait,    corps,    "auteur": auteur->nom,    "auteurRole": auteur->role,    "auteurPhoto": auteur->photo{      "url": asset->url,      "width": asset->metadata.dimensions.width,      "height": asset->metadata.dimensions.height    },    "publieIl_y_a": publieLe,    "image": imagePrincipale{    "legende": legende,    "url": asset->url,    "width": asset->metadata.dimensions.width,    "height": asset->metadata.dimensions.height  },    "video": video.asset->url,    aLaUne,    vues  }
 export type ARTICLE_BY_SLUG_QUERY_RESULT = {
   slug: string | null;
   rubrique:
@@ -486,6 +499,7 @@ export type ARTICLE_BY_SLUG_QUERY_RESULT = {
     width: number | null;
     height: number | null;
   } | null;
+  video: string | null;
   aLaUne: boolean | null;
   vues: number | null;
 } | null;
@@ -506,7 +520,7 @@ declare global {
     '\n  *[_type == "article" && rubrique == $rubrique && aLaUne != true]\n    | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, extrait,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_PAR_RUBRIQUE_QUERY_RESULT;
     '\n  *[_type == "article" && rubrique == $rubrique] | order(publieLe desc) [0...$limit] {\n    "slug": slug.current, rubrique, titre, extrait, chapo,\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': ARTICLES_RUBRIQUE_COMPLETE_QUERY_RESULT;
     '\n  *[_type == "article" && rubrique == "portrait"] | order(publieLe desc) [0] {\n    citation,\n    "nom": sujetNom,\n    "role": sujetRole,\n    extrait,\n    "slug": slug.current,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  }\n  }\n': PORTRAIT_EN_AVANT_QUERY_RESULT;
-    '\n  *[_type == "article" && slug.current == $slug][0] {\n    "slug": slug.current,\n    rubrique,\n    titre,\n    chapo,\n    extrait,\n    corps,\n    "auteur": auteur->nom,\n    "auteurRole": auteur->role,\n    "auteurPhoto": auteur->photo{\n      "url": asset->url,\n      "width": asset->metadata.dimensions.width,\n      "height": asset->metadata.dimensions.height\n    },\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  },\n    aLaUne,\n    vues\n  }\n': ARTICLE_BY_SLUG_QUERY_RESULT;
+    '\n  *[_type == "article" && slug.current == $slug][0] {\n    "slug": slug.current,\n    rubrique,\n    titre,\n    chapo,\n    extrait,\n    corps,\n    "auteur": auteur->nom,\n    "auteurRole": auteur->role,\n    "auteurPhoto": auteur->photo{\n      "url": asset->url,\n      "width": asset->metadata.dimensions.width,\n      "height": asset->metadata.dimensions.height\n    },\n    "publieIl_y_a": publieLe,\n    "image": imagePrincipale{\n    "legende": legende,\n    "url": asset->url,\n    "width": asset->metadata.dimensions.width,\n    "height": asset->metadata.dimensions.height\n  },\n    "video": video.asset->url,\n    aLaUne,\n    vues\n  }\n': ARTICLE_BY_SLUG_QUERY_RESULT;
     '\n  *[_type == "article"] { "slug": slug.current, "publieLe": publieLe }\n': TOUS_LES_SLUGS_QUERY_RESULT;
   }
 }

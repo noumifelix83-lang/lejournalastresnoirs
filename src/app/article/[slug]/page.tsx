@@ -81,13 +81,23 @@ export default async function ArticlePage({ params }: Props) {
           <ShareBar url={url} titre={article.titre} />
         </div>
 
-        <ArticleImage
-          image={article.image}
-          fallbackLegende={`Illustration — ${r.label}`}
-          className="w-full h-[280px] sm:h-[400px] md:h-[520px] mb-8"
-          sizes="(max-width: 820px) 100vw, 820px"
-          fit="contain"
-        />
+        {article.video ? (
+          // eslint-disable-next-line jsx-a11y/media-has-caption
+          <video
+            src={article.video}
+            poster={article.image?.url}
+            controls
+            className="w-full h-auto mb-8 bg-ink"
+          />
+        ) : (
+          <ArticleImage
+            image={article.image}
+            fallbackLegende={`Illustration — ${r.label}`}
+            className="w-full h-[280px] sm:h-[400px] md:h-[520px] mb-8"
+            sizes="(max-width: 820px) 100vw, 820px"
+            fit="contain"
+          />
+        )}
 
         {article.corps ? (
           <div className="font-body text-[16px] md:text-[17px] leading-[1.7] text-ink/85 [&>*+*]:mt-5 [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-[22px] [&_h2]:mt-8 [&_h2]:mb-2 [&_h2]:text-ink [&_a]:underline [&_a]:decoration-gold-deep">

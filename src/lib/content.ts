@@ -428,6 +428,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
         auteurPhoto: mapImage(a.auteurPhoto),
         publieIl_y_a: a.publieIl_y_a ? publieIlYA(a.publieIl_y_a) : "",
         image: mapImage(a.image),
+        video: a.video ?? undefined,
         aLaUne: a.aLaUne ?? undefined,
         vues: a.vues ?? 0,
       };
