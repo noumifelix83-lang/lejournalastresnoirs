@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { PortableText } from "next-sanity";
+import Image from "next/image";
+import { PortableText, type PortableTextComponents } from "next-sanity";
+import { urlForImage } from "@/lib/sanity/client";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArticleImage } from "@/components/ArticleImage";
@@ -14,6 +16,21 @@ import { rubrique } from "@/lib/rubriques";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
+
+// Permet d'intégrer des photos directement dans le corps d'un article
+// (en plus de la photo principale), ex. une seconde image d'évènement.
+const portableTextComponents: PortableTextComponents = {
+  types: {
+    image: ({ value }) => {
+      const img = urlForImage(value).width(1600).fit("max").url();
+      return (
+        <div className="relative w-full aspect-[3/2] my-2">
+          <Image src={img} alt={value.alt ?? ""} fill sizes="820px" className="object-cover" />
+        </div>
+      );
+    },
+  },
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -101,7 +118,7 @@ export default async function ArticlePage({ params }: Props) {
 
         {article.corps ? (
           <div className="font-body text-[16px] md:text-[17px] leading-[1.7] text-ink/85 [&>*+*]:mt-5 [&_h2]:font-display [&_h2]:font-semibold [&_h2]:text-[22px] [&_h2]:mt-8 [&_h2]:mb-2 [&_h2]:text-ink [&_a]:underline [&_a]:decoration-gold-deep">
-            <PortableText value={article.corps as never} />
+            <PortableText value={article.corps as never} components={portableTextComponents} />
           </div>
         ) : article.extrait ? (
           <p className="font-body text-[16px] md:text-[17px] leading-[1.7] text-ink/85">{article.extrait}</p>
